@@ -1,0 +1,324 @@
+{
+  "criteria": [
+    {
+      "code": "C1",
+      "name_id": "Harga",
+      "name_en": "Price",
+      "type": "cost",
+      "unit": "Rp",
+      "col": "price_idr"
+    },
+    {
+      "code": "C2",
+      "name_id": "Kapasitas RAM",
+      "name_en": "RAM Capacity",
+      "type": "benefit",
+      "unit": "GB",
+      "col": "ram_gb"
+    },
+    {
+      "code": "C3",
+      "name_id": "Storage Efektif",
+      "name_en": "Effective Storage",
+      "type": "benefit",
+      "unit": "GB",
+      "col": "storage_effective_gb"
+    },
+    {
+      "code": "C4",
+      "name_id": "Peringkat CPU",
+      "name_en": "CPU Ranking",
+      "type": "cost",
+      "unit": "rank",
+      "col": "cpu_ranking"
+    },
+    {
+      "code": "C5",
+      "name_id": "Skor Benchmark GPU",
+      "name_en": "GPU Benchmark",
+      "type": "benefit",
+      "unit": "pts",
+      "col": "gpu_benchmark"
+    },
+    {
+      "code": "C6",
+      "name_id": "Daya Tahan Baterai",
+      "name_en": "Battery Life",
+      "type": "benefit",
+      "unit": "jam",
+      "col": "battery_hours"
+    },
+    {
+      "code": "C7",
+      "name_id": "Bobot Laptop",
+      "name_en": "Weight",
+      "type": "cost",
+      "unit": "kg",
+      "col": "weight_kg"
+    },
+    {
+      "code": "C8",
+      "name_id": "Rating Pengguna",
+      "name_en": "User Rating",
+      "type": "benefit",
+      "unit": "/5",
+      "col": "user_rating"
+    },
+    {
+      "code": "C9",
+      "name_id": "Refresh Rate Layar",
+      "name_en": "Refresh Rate",
+      "type": "benefit",
+      "unit": "Hz",
+      "col": "refresh_rate_hz"
+    }
+  ],
+  "weights_used": {
+    "C1": 0.303031,
+    "C2": 0.098482,
+    "C3": 0.062618,
+    "C4": 0.062618,
+    "C5": 0.029471,
+    "C6": 0.146851,
+    "C7": 0.212989,
+    "C8": 0.062618,
+    "C9": 0.021323
+  },
+  "sample_10_laptops_input": [
+    {
+      "id": 1,
+      "name": "asus rog strix scar 17 core i9 12th gen - (32 gb/1 tb ssd/windows 11 home/8 gb graphics/nvidia geforce rtx 3070 ti) g733zw-ll139ws gaming laptop  (17.3 inch, off black, 2.90 kg, with ms office)",
+      "price_idr": 44648100,
+      "ram_gb": 32,
+      "storage_effective_gb": 1000.0,
+      "cpu_ranking": 4,
+      "gpu_benchmark": 168.0,
+      "battery_hours": 4.0,
+      "weight_kg": 2.9,
+      "user_rating": 5.0,
+      "refresh_rate_hz": 60
+    },
+    {
+      "id": 2,
+      "name": "asus rog strix scar 15 core i9 12th gen - (32 gb/1 tb ssd/windows 11 home/8 gb graphics/nvidia geforce rtx 3070 ti) g533zw-ln136ws gaming laptop  (15.6 inch, off black, 2.30 kg, with ms office)",
+      "price_idr": 43698100,
+      "ram_gb": 32,
+      "storage_effective_gb": 1000.0,
+      "cpu_ranking": 4,
+      "gpu_benchmark": 168.0,
+      "battery_hours": 4.0,
+      "weight_kg": 2.3,
+      "user_rating": 4.5,
+      "refresh_rate_hz": 60
+    },
+    {
+      "id": 3,
+      "name": "hp victus ryzen 7 octa core 5800h - (16 gb/512 gb ssd/windows 11 home/4 gb graphics/nvidia geforce rtx 3050) 16-e0351ax gaming laptop  (16.1 inch, mica silver, 2.48 kg, with ms office)",
+      "price_idr": 19777290,
+      "ram_gb": 16,
+      "storage_effective_gb": 512.0,
+      "cpu_ranking": 64,
+      "gpu_benchmark": 72.6,
+      "battery_hours": 4.0,
+      "weight_kg": 2.48,
+      "user_rating": 4.5,
+      "refresh_rate_hz": 60
+    },
+    {
+      "id": 4,
+      "name": "lenovo ideapad gaming 3i ryzen 7 octa core r7-5800h 5th gen - (16 gb/512 gb ssd/windows 11 home/4 gb graphics/nvidia geforce rtx 3050) 15ach6 gaming laptop  (15.6 inch, shadow black, 2.25 kg, with ms office)",
+      "price_idr": 16666230,
+      "ram_gb": 16,
+      "storage_effective_gb": 512.0,
+      "cpu_ranking": 24,
+      "gpu_benchmark": 72.6,
+      "battery_hours": 4.0,
+      "weight_kg": 2.25,
+      "user_rating": 4.5,
+      "refresh_rate_hz": 60
+    },
+    {
+      "id": 5,
+      "name": "lenovo yoga slim 7 core i5 11th gen - (16 gb/512 gb ssd/windows 11 home) 82a300mbin thin and light laptop  (14 inch, slate grey, with ms office)",
+      "price_idr": 14438100,
+      "ram_gb": 16,
+      "storage_effective_gb": 512.0,
+      "cpu_ranking": 108,
+      "gpu_benchmark": 4.23,
+      "battery_hours": 4.5,
+      "weight_kg": 1.500672348,
+      "user_rating": 4.3,
+      "refresh_rate_hz": 60
+    },
+    {
+      "id": 6,
+      "name": "lenovo yoga slim 7 core i7 11th gen - (16 gb/512 gb ssd/windows 11 home) 14itl05 thin and light laptop  (14 inch, slate grey, 1.36 kg, with ms office)",
+      "price_idr": 14895050,
+      "ram_gb": 16,
+      "storage_effective_gb": 512.0,
+      "cpu_ranking": 61,
+      "gpu_benchmark": 17.5,
+      "battery_hours": 4.5,
+      "weight_kg": 1.36,
+      "user_rating": 4.3,
+      "refresh_rate_hz": 60
+    },
+    {
+      "id": 7,
+      "name": "lenovo lenovo v15 celeron dual core - (4 gb/256 gb ssd/windows 10) 82c30053ih thin and light laptop  (15.6 inch, iron grey)",
+      "price_idr": 5565100,
+      "ram_gb": 4,
+      "storage_effective_gb": 256.0,
+      "cpu_ranking": 745,
+      "gpu_benchmark": 4.23,
+      "battery_hours": 4.5,
+      "weight_kg": 1.500672348,
+      "user_rating": 3.0,
+      "refresh_rate_hz": 60
+    },
+    {
+      "id": 8,
+      "name": "lenovo yoga 6 ryzen 7 octa core r7-5700u 5th gen - (16 gb/1 tb ssd/windows 11 home) 13alc6 2 in 1 laptop  (13.3 inch, abyss blue, 1.31 kg, with ms office)",
+      "price_idr": 17348520,
+      "ram_gb": 16,
+      "storage_effective_gb": 1000.0,
+      "cpu_ranking": 24,
+      "gpu_benchmark": 102.0,
+      "battery_hours": 5.0,
+      "weight_kg": 1.31,
+      "user_rating": 4.4,
+      "refresh_rate_hz": 60
+    },
+    {
+      "id": 9,
+      "name": "asus tuf gaming f15 core i5 10th gen - (8 gb/1 tb ssd/windows 11 home/4 gb graphics/nvidia geforce gtx 1650/144 hz) fx506lh-hn310w gaming laptop  (15.6 inch, black, 2.30 kg)",
+      "price_idr": 12348100,
+      "ram_gb": 8,
+      "storage_effective_gb": 1000.0,
+      "cpu_ranking": 187,
+      "gpu_benchmark": 59.9,
+      "battery_hours": 4.0,
+      "weight_kg": 2.3,
+      "user_rating": 4.7,
+      "refresh_rate_hz": 144
+    },
+    {
+      "id": 10,
+      "name": "dell inspiron pentium silver - (8 gb/256 gb ssd/windows 11 home) inspiron 3521 notebook  (15.6 inch, carbon black, 1.61 kg, with ms office)",
+      "price_idr": 6269810,
+      "ram_gb": 8,
+      "storage_effective_gb": 256.0,
+      "cpu_ranking": 674,
+      "gpu_benchmark": 5.05,
+      "battery_hours": 4.5,
+      "weight_kg": 1.61,
+      "user_rating": 4.0,
+      "refresh_rate_hz": 60
+    }
+  ],
+  "expected_denom": [
+    74336599.46981701,
+    58.92367945,
+    2275.88400407,
+    1031.95687894,
+    285.21758063,
+    13.6381817,
+    6.39255309,
+    13.75427206,
+    230.51247255
+  ],
+  "expected_ideal_pos": [
+    0.02268595,
+    0.0534831,
+    0.02751368,
+    0.00024272,
+    0.01735911,
+    0.05383813,
+    0.04364693,
+    0.02276309,
+    0.01332036
+  ],
+  "expected_ideal_neg": [
+    0.18200651,
+    0.00668539,
+    0.0070435,
+    0.04520573,
+    0.00043708,
+    0.04307051,
+    0.09662297,
+    0.01365785,
+    0.00555015
+  ],
+  "expected_ranking": [
+    {
+      "rank": 1,
+      "id": 6,
+      "d_plus": 0.05194225,
+      "d_minus": 0.1399418,
+      "topsis_score": 0.72930396
+    },
+    {
+      "rank": 2,
+      "id": 5,
+      "d_plus": 0.05166958,
+      "d_minus": 0.13910263,
+      "topsis_score": 0.72915562
+    },
+    {
+      "rank": 3,
+      "id": 10,
+      "d_plus": 0.06467291,
+      "d_minus": 0.16259221,
+      "topsis_score": 0.71542967
+    },
+    {
+      "rank": 4,
+      "id": 8,
+      "d_plus": 0.0560202,
+      "d_minus": 0.13485145,
+      "topsis_score": 0.70650329
+    },
+    {
+      "rank": 5,
+      "id": 7,
+      "d_plus": 0.07162198,
+      "d_minus": 0.16608957,
+      "topsis_score": 0.69870216
+    },
+    {
+      "rank": 6,
+      "id": 9,
+      "d_plus": 0.06186638,
+      "d_minus": 0.13964276,
+      "topsis_score": 0.69298476
+    },
+    {
+      "rank": 7,
+      "id": 4,
+      "d_plus": 0.06484048,
+      "d_minus": 0.12626462,
+      "topsis_score": 0.66070774
+    },
+    {
+      "rank": 8,
+      "id": 3,
+      "d_plus": 0.07786823,
+      "d_minus": 0.11283032,
+      "topsis_score": 0.59166849
+    },
+    {
+      "rank": 9,
+      "id": 2,
+      "d_plus": 0.15947906,
+      "d_minus": 0.07333725,
+      "topsis_score": 0.31500047
+    },
+    {
+      "rank": 10,
+      "id": 1,
+      "d_plus": 0.16842156,
+      "d_minus": 0.07071058,
+      "topsis_score": 0.2956967
+    }
+  ]
+}

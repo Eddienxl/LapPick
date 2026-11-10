@@ -1,0 +1,59 @@
+# OS & Editor Artifacts
+.DS_Store
+Thumbs.db
+desktop.ini
+*.tmp
+*.bak
+*.swp
+.vscode/
+.idea/
+.zed/
+.agents/
+
+# Python / Streamlit / Jupyter
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.pytest_cache/
+.pyrefly_cache/
+.ipynb_checkpoints/
+lab-streamlit/.streamlit/secrets.toml
+
+# Notebook Export Archives (cleaned outputs already live under data/clean/)
+notebooks/*.zip
+
+# Node / Tools
+node_modules/
+tools/**/node_modules/
+
+# Laravel (lappick-laravel)
+lappick-laravel/vendor/
+lappick-laravel/node_modules/
+lappick-laravel/public/build/
+lappick-laravel/public/hot
+lappick-laravel/public/storage
+lappick-laravel/.env
+lappick-laravel/.env.backup
+lappick-laravel/.env.production
+lappick-laravel/.phpunit.result.cache
+lappick-laravel/.phpunit.cache/
+lappick-laravel/auth.json
+lappick-laravel/database/database.sqlite
+lappick-laravel/database/*.sqlite*
+!lappick-laravel/database/migrations/
+!lappick-laravel/database/seeders/
+lappick-laravel/storage/*.key
+lappick-laravel/storage/logs/*.log
+lappick-laravel/storage/pail/
+lappick-laravel/storage/framework/cache/data/*
+!lappick-laravel/storage/framework/cache/data/.gitignore
+lappick-laravel/storage/framework/sessions/*
+!lappick-laravel/storage/framework/sessions/.gitignore
+lappick-laravel/storage/framework/views/*
+!lappick-laravel/storage/framework/views/.gitignore
+lappick-laravel/bootstrap/cache/*.php
+
+# Reference Course Documents (outside LapPick source repository)
+Makalah Kelompok SPK.docx
+Sistem Pendukung Keputusan.pdf

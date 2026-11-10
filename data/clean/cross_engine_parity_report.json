@@ -1,0 +1,50 @@
+[
+  {
+    "slug": "student",
+    "candidates": 949,
+    "exact_rank_949_match": true,
+    "max_dw": 2.7755575615628914e-17,
+    "max_dcr": 1.5265566588595902e-16,
+    "max_dci": 1.7763568394002505e-15,
+    "top1_id": 326,
+    "top1_ci": 0.787045,
+    "py_ms": 49.17,
+    "php_ms": 7.64
+  },
+  {
+    "slug": "gamer",
+    "candidates": 949,
+    "exact_rank_949_match": true,
+    "max_dw": 1.3877787807814457e-17,
+    "max_dcr": 0.0,
+    "max_dci": 5.828670879282072e-16,
+    "top1_id": 240,
+    "top1_ci": 0.721575,
+    "py_ms": 45.24,
+    "php_ms": 7.33
+  },
+  {
+    "slug": "creator",
+    "candidates": 949,
+    "exact_rank_949_match": true,
+    "max_dw": 5.551115123125783e-17,
+    "max_dcr": 1.5265566588595902e-16,
+    "max_dci": 5.689893001203927e-16,
+    "top1_id": 240,
+    "top1_ci": 0.769117,
+    "py_ms": 37.39,
+    "php_ms": 6.48
+  },
+  {
+    "slug": "office",
+    "candidates": 949,
+    "exact_rank_949_match": true,
+    "max_dw": 0.0,
+    "max_dcr": 0.0,
+    "max_dci": 2.0539125955565396e-15,
+    "top1_id": 395,
+    "top1_ci": 0.722014,
+    "py_ms": 38.77,
+    "php_ms": 8.57
+  }
+]

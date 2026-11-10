@@ -1,0 +1,116 @@
+{
+  "dataset_ref": "dhanushbommavaram/laptop-ranked-dataset",
+  "inr_to_idr_rate": 190,
+  "ssd_multiplier": 1.0,
+  "non_ssd_multiplier": 0.6,
+  "initial_rows": 984,
+  "duplicates_removed": 35,
+  "rows_dropped_invalid_or_na": 0,
+  "final_clean_rows": 949,
+  "refresh_rate_defaulted_to_60hz_count": 0,
+  "missing_before_handling": {
+    "price_idr": 0,
+    "ram_gb": 0,
+    "storage_effective_gb": 0,
+    "cpu_ranking": 0,
+    "gpu_benchmark": 0,
+    "battery_hours": 0,
+    "weight_kg": 0,
+    "user_rating": 277
+  },
+  "imputation_details": {
+    "user_rating": {
+      "method": "group_median_by_type_name",
+      "count": 277,
+      "global_median": 4.3
+    },
+    "battery_hours": {
+      "method": "dropped_rows_with_na",
+      "count": 0
+    },
+    "weight_kg": {
+      "method": "dropped_rows_with_na",
+      "count": 0
+    }
+  },
+  "brands_distribution": {
+    "ASUS": 284,
+    "Dell": 183,
+    "Lenovo": 178,
+    "HP": 147,
+    "Acer": 58,
+    "MSI": 52,
+    "Apple": 12,
+    "Infinix": 8,
+    "Realme": 6,
+    "VAIO": 5,
+    "Nokia": 4,
+    "Avita": 3,
+    "RedmiBook": 3,
+    "LG": 3,
+    "Mi": 2,
+    "Samsung": 1
+  },
+  "types_distribution": {
+    "Thin and Light Laptop": 511,
+    "Gaming Laptop": 219,
+    "Notebook": 157,
+    "2 in 1 Laptop": 62
+  },
+  "criteria_summary": {
+    "price_idr": {
+      "min": 3038100.0,
+      "median": 11398100.0,
+      "mean": 13182792.0232,
+      "max": 57378100.0
+    },
+    "ram_gb": {
+      "min": 4.0,
+      "median": 8.0,
+      "mean": 10.3056,
+      "max": 32.0
+    },
+    "storage_effective_gb": {
+      "min": 19.2,
+      "median": 512.0,
+      "mean": 614.2795,
+      "max": 2000.0
+    },
+    "cpu_ranking": {
+      "min": 4.0,
+      "median": 108.0,
+      "mean": 231.568,
+      "max": 907.0
+    },
+    "gpu_benchmark": {
+      "min": 1.0,
+      "median": 17.5,
+      "mean": 40.1802,
+      "max": 233.0
+    },
+    "battery_hours": {
+      "min": 4.0,
+      "median": 4.5,
+      "mean": 4.4173,
+      "max": 5.0
+    },
+    "weight_kg": {
+      "min": 0.78,
+      "median": 1.65,
+      "mean": 1.6749,
+      "max": 2.9
+    },
+    "user_rating": {
+      "min": 1.8,
+      "median": 4.3,
+      "mean": 4.2311,
+      "max": 5.0
+    },
+    "refresh_rate_hz": {
+      "min": 1.0,
+      "median": 60.0,
+      "mean": 50.9094,
+      "max": 60.0
+    }
+  }
+}

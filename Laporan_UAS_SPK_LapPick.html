@@ -1,0 +1,1862 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laporan Proyek UAS Sistem Pendukung Keputusan (SPK) - LapPick - Teknik Informatika UIN Suska Riau</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 4cm 3cm 3cm 4cm; /* Atas 4cm, Bawah 3cm, Kanan 3cm, Kiri 4cm (Standar TIF UIN Suska) */
+        }
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 12pt;
+            line-height: 1.5;
+            color: #000;
+            margin: 0 auto;
+            max-width: 820px;
+            padding: 40px;
+            background: #fff;
+        }
+        @media screen {
+            body {
+                background: #f4f6f8;
+                padding: 20px;
+            }
+            .document-container {
+                background: #fff;
+                padding: 4cm 3cm 3cm 4cm;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+                border-radius: 4px;
+            }
+        }
+        h1, h2, h3, h4, h5 {
+            font-family: 'Times New Roman', Times, serif;
+            font-weight: bold;
+            color: #000;
+        }
+        h1.title {
+            text-align: center;
+            font-size: 14pt;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+            line-height: 1.4;
+        }
+        h2.chapter-title {
+            text-align: center;
+            font-size: 16pt;
+            text-transform: uppercase;
+            margin-top: 45px;
+            margin-bottom: 25px;
+            line-height: 1.3;
+        }
+        h3.section-title {
+            font-size: 14pt;
+            margin-top: 25px;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+        h4.subsection-title {
+            font-size: 12pt;
+            margin-top: 18px;
+            margin-bottom: 8px;
+            font-weight: bold;
+            line-height: 1.3;
+        }
+        h5.subsubsection-title {
+            font-size: 12pt;
+            margin-top: 14px;
+            margin-bottom: 6px;
+            font-weight: bold;
+            font-style: italic;
+        }
+        p {
+            text-align: justify;
+            text-indent: 1.2cm;
+            margin-top: 0;
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+        p.no-indent {
+            text-indent: 0;
+        }
+        .ref-item {
+            text-align: justify;
+            text-indent: -1.2cm;
+            padding-left: 1.2cm;
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 11pt;
+            line-height: 1.4;
+        }
+        ul, ol {
+            margin-top: 0;
+            margin-bottom: 12px;
+            padding-left: 1.2cm;
+            text-align: justify;
+            line-height: 1.5;
+        }
+        li {
+            margin-bottom: 6px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 6px 0 22px 0;
+            font-size: 10.5pt;
+            line-height: 1.3;
+            page-break-inside: auto;
+        }
+        thead {
+            display: table-header-group;
+        }
+        tr {
+            page-break-inside: avoid;
+            page-break-after: auto;
+        }
+        table, th, td {
+            border: 1px solid #000;
+        }
+        th {
+            background-color: #f2f2f2;
+            padding: 7px 8px;
+            text-align: center;
+            font-weight: bold;
+        }
+        td {
+            padding: 6px 8px;
+            vertical-align: top;
+        }
+        .caption {
+            font-size: 10pt;
+            font-weight: bold;
+            text-align: left;
+            margin-top: 20px;
+            margin-bottom: 6px;
+            line-height: 1.3;
+            page-break-after: avoid;
+        }
+        .caption-figure {
+            font-size: 10pt;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 8px;
+            margin-bottom: 18px;
+            line-height: 1.3;
+        }
+        .figure-block {
+            text-align: center;
+            margin: 16px 0;
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+        .figure-block img {
+            max-width: 100%;
+            max-height: 460px;
+            width: auto;
+            height: auto;
+            border-radius: 4px;
+        }
+        .formula-box {
+            background: #fafafa;
+            border-left: 3px solid #000;
+            padding: 10px 15px;
+            margin: 15px 0;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 11pt;
+            text-align: center;
+        }
+        .cover-page {
+            text-align: center;
+            margin-bottom: 60px;
+            page-break-after: always;
+        }
+        .toc-section {
+            margin-top: 30px;
+            margin-bottom: 40px;
+            page-break-after: always;
+        }
+        .toc-row {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            margin-bottom: 6px;
+            font-size: 11pt;
+            line-height: 1.4;
+        }
+        .toc-title {
+            flex-shrink: 1;
+            max-width: calc(100% - 38px);
+        }
+        .toc-leader {
+            flex-grow: 1;
+            min-width: 18px;
+            border-bottom: 1px dotted #333;
+            margin: 0 6px;
+            position: relative;
+            top: -4px;
+        }
+        .toc-page {
+            flex-shrink: 0;
+            text-align: right;
+            min-width: 25px;
+        }
+        .toc-bold {
+            font-weight: bold;
+        }
+        .toc-indent-1 {
+            padding-left: 20px;
+        }
+        .toc-indent-2 {
+            padding-left: 40px;
+        }
+        .status-badge {
+            display: inline-block;
+            font-size: 9.5pt;
+            padding: 2px 8px;
+            border: 1px solid #000;
+            background: #f2f2f2;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="document-container">
+
+    <!-- ========================================== -->
+    <!-- HALAMAN JUDUL (COVER LAPORAN UAS SPK)      -->
+    <!-- ========================================== -->
+    <div class="cover-page">
+        <h1 class="title" style="margin-top: 20px; margin-bottom: 35px; line-height: 1.4;">
+            LAPORAN PROYEK UJIAN AKHIR SEMESTER<br>
+            MATA KULIAH SISTEM PENDUKUNG KEPUTUSAN<br><br>
+            RANCANG BANGUN SISTEM PENDUKUNG KEPUTUSAN PEMILIHAN LAPTOP TERBAIK SESUAI PROFIL KEBUTUHAN PENGGUNA MENGGUNAKAN METODE HIBRIDA AHP DAN TOPSIS BERBASIS LARAVEL DAN STREAMLIT (LAPPICK)
+        </h1>
+
+        <p style="text-align: center; text-indent: 0; margin-top: 45px; font-size: 12pt; line-height: 1.6;">
+            Disusun untuk Memenuhi Tugas Ujian Akhir Semester (UAS)<br>
+            Mata Kuliah Sistem Pendukung Keputusan Semester VII
+        </p>
+
+        <div style="margin: 60px 0 70px 0; font-size: 12pt; line-height: 1.6;">
+            <strong>Oleh:</strong><br><br>
+            <strong style="font-size: 13pt;">AHMAD FADLI PRATAMA</strong><br>
+            <strong>NIM. 12350111030</strong>
+        </div>
+
+        <div style="margin-top: 80px; font-size: 12pt; font-weight: bold; line-height: 1.5; text-transform: uppercase;">
+            PROGRAM STUDI TEKNIK INFORMATIKA<br>
+            FAKULTAS SAINS DAN TEKNOLOGI<br>
+            UNIVERSITAS ISLAM NEGERI SULTAN SYARIF KASIM RIAU<br>
+            PEKANBARU<br>
+            2026
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- KATA PENGANTAR                             -->
+    <!-- ========================================== -->
+    <div style="page-break-after: always; margin-top: 30px; margin-bottom: 40px;">
+        <h2 class="chapter-title" style="page-break-before: always;">KATA PENGANTAR</h2>
+
+        <p style="text-align: center; text-indent: 0; font-size: 16pt; margin-bottom: 15px; font-family: 'Traditional Arabic', 'Amiri', 'Times New Roman', serif;">
+            بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
+        </p>
+
+        <p class="no-indent" style="text-align: center; font-style: italic; margin-bottom: 25px;">
+            Assalamu’alaikum Warahmatullahi Wabarakatuh
+        </p>
+
+        <p>
+            Alhamdulillah, segala puji dan syukur penulis panjatkan ke hadirat Allah Subhanahu Wa Ta’ala atas limpahan rahmat, taufik, dan hidayah-Nya sehingga penulis dapat menyelesaikan penyusunan laporan proyek Ujian Akhir Semester (UAS) mata kuliah Sistem Pendukung Keputusan yang berjudul <em>“Rancang Bangun Sistem Pendukung Keputusan Pemilihan Laptop Terbaik Sesuai Profil Kebutuhan Pengguna Menggunakan Metode Hibrida AHP dan TOPSIS Berbasis Laravel dan Streamlit (LapPick)”</em>. Selawat beserta salam senantiasa tercurahkan kepada Nabi Muhammad صلى الله عليه وسلم yang telah membawa umat manusia menuju peradaban ilmu pengetahuan.
+        </p>
+
+        <p>
+            Laporan ini disusun secara <em>live</em> seiring pengembangan perangkat lunak dan eksperimen komputasi pada Google Colab, yang mencakup tahapan pembersihan data (<em>data cleaning</em>), rekayasa fitur (<em>feature engineering</em>), penyusunan bobot prioritas kriteria menggunakan <em>Analytical Hierarchy Process</em> (AHP), perankingan alternatif menggunakan <em>Technique for Order of Preference by Similarity to Ideal Solution</em> (TOPSIS), serta validasi komparatif terhadap metode <em>Simple Additive Weighting</em> (SAW) dan <em>Weighted Product</em> (WP).
+        </p>
+
+        <p>
+            Penulis menyadari bahwa laporan ini masih memiliki ruang penyempurnaan. Oleh karena itu, kritik dan saran yang membangun sangat diharapkan demi pengembangan sistem yang lebih baik di masa mendatang. Semoga laporan dan perangkat lunak yang dihasilkan dapat memberikan manfaat akademis maupun praktis.
+        </p>
+
+        <p class="no-indent" style="text-align: center; font-style: italic; margin-top: 25px;">
+            Wassalamu’alaikum Warahmatullahi Wabarakatuh
+        </p>
+
+        <div style="margin-top: 40px; float: right; width: 260px; text-align: left;">
+            <p class="no-indent" style="margin-bottom: 60px;">
+                Pekanbaru, November 2026<br>
+                Penulis,
+            </p>
+            <p class="no-indent" style="font-weight: bold; margin-bottom: 0;">
+                <u>Ahmad Fadli Pratama</u><br>
+                NIM. 12350111030
+            </p>
+        </div>
+        <div style="clear: both;"></div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- DAFTAR ISI                                 -->
+    <!-- ========================================== -->
+    <div class="toc-section">
+        <h2 class="chapter-title">DAFTAR ISI</h2>
+
+        <div class="toc-row toc-bold"><span class="toc-title">HALAMAN JUDUL</span><span class="toc-leader"></span><span class="toc-page">i</span></div>
+        <div class="toc-row toc-bold"><span class="toc-title">KATA PENGANTAR</span><span class="toc-leader"></span><span class="toc-page">ii</span></div>
+        <div class="toc-row toc-bold"><span class="toc-title">DAFTAR ISI</span><span class="toc-leader"></span><span class="toc-page">iii</span></div>
+        <div class="toc-row toc-bold"><span class="toc-title">DAFTAR TABEL</span><span class="toc-leader"></span><span class="toc-page">iv</span></div>
+        <div class="toc-row toc-bold"><span class="toc-title">DAFTAR GAMBAR</span><span class="toc-leader"></span><span class="toc-page">v</span></div>
+
+        <div class="toc-row toc-bold" style="margin-top: 10px;"><span class="toc-title">BAB 1 PENDAHULUAN</span><span class="toc-leader"></span><span class="toc-page">1</span></div>
+        <div class="toc-row toc-indent-1"><span class="toc-title">1.1 Latar Belakang</span><span class="toc-leader"></span><span class="toc-page">1</span></div>
+        <div class="toc-row toc-indent-1"><span class="toc-title">1.2 Rumusan Masalah</span><span class="toc-leader"></span><span class="toc-page">2</span></div>
+        <div class="toc-row toc-indent-1"><span class="toc-title">1.3 Batasan Masalah</span><span class="toc-leader"></span><span class="toc-page">2</span></div>
+        <div class="toc-row toc-indent-1"><span class="toc-title">1.4 Tujuan Penelitian</span><span class="toc-leader"></span><span class="toc-page">3</span></div>
+        <div class="toc-row toc-indent-1"><span class="toc-title">1.5 Manfaat Penelitian</span><span class="toc-leader"></span><span class="toc-page">3</span></div>
+
+        <div class="toc-row toc-bold" style="margin-top: 10px;"><span class="toc-title">BAB 2 LANDASAN TEORI</span><span class="toc-leader"></span><span class="toc-page">4</span></div>
+        <div class="toc-row toc-indent-1"><span class="toc-title">2.1 Konsep Sistem Pendukung Keputusan (SPK) dan <em>Multi-Criteria Decision Making</em> (MCDM)</span><span class="toc-leader"></span><span class="toc-page">4</span></div>
+        <div class="toc-row toc-indent-1"><span class="toc-title">2.2 Metode <em>Analytical Hierarchy Process</em> (AHP)</span><span class="toc-leader"></span><span class="toc-page">4</span></div>
+        <div class="toc-row toc-indent-1"><span class="toc-title">2.3 Metode <em>Technique for Order of Preference by Similarity to Ideal Solution</em> (TOPSIS)</span><span class="toc-leader"></span><span class="toc-page">5</span></div>
+        <div class="toc-row toc-indent-1"><span class="toc-title">2.4 Metode Pembanding: SAW dan WP</span><span class="toc-leader"></span><span class="toc-page">6</span></div>
+        <div class="toc-row toc-indent-1"><span class="toc-title">2.5 Penelitian Terkait</span><span class="toc-leader"></span><span class="toc-page">7</span></div>
+
+        <div class="toc-row toc-bold" style="margin-top: 10px;"><span class="toc-title">BAB 3 METODOLOGI PENELITIAN</span><span class="toc-leader"></span><span class="toc-page">8</span></div>
+        <div class="toc-row toc-indent-1"><span class="toc-title">3.1 Tahapan Penelitian</span><span class="toc-leader"></span><span class="toc-page">8</span></div>
+        <div class="toc-row toc-indent-1"><span class="toc-title">3.2 Sumber Dataset dan Definisi 9 Kriteria Keputusan</span><span class="toc-leader"></span><span class="toc-page">8</span></div>
+        <div class="toc-row toc-indent-1"><span class="toc-title">3.3 Alur Pembersihan Data (<em>Data Cleaning</em>) dan Rekayasa Fitur di Google Colab</span><span class="toc-leader"></span><span class="toc-page">10</span></div>
+        <div class="toc-row toc-indent-1"><span class="toc-title">3.4 Perancangan Arsitektur Sistem Hibrida (Laravel + Streamlit)</span><span class="toc-leader"></span><span class="toc-page">10</span></div>
+        <div class="toc-row toc-indent-1"><span class="toc-title">3.5 Perancangan Antarmuka (<em>Design System</em> Dwibahasa &amp; <em>Light/Dark Mode</em>)</span><span class="toc-leader"></span><span class="toc-page">11</span></div>
+
+        <div class="toc-row toc-bold" style="margin-top: 10px;"><span class="toc-title">BAB 4 HASIL DAN PEMBAHASAN</span><span class="toc-leader"></span><span class="toc-page">13</span></div>
+        <div class="toc-row toc-indent-1"><span class="toc-title">4.1 Hasil Pembersihan Data dan Perbaikan Anomali Dataset (Colab Notebook 01)</span><span class="toc-leader"></span><span class="toc-page">13</span></div>
+        <div class="toc-row toc-indent-1"><span class="toc-title">4.2 Hasil Pembobotan Kriteria dan Uji Konsistensi AHP pada 4 Profil Pengguna</span><span class="toc-leader"></span><span class="toc-page">15</span></div>
+        <div class="toc-row toc-indent-1"><span class="toc-title">4.3 Hasil Perankingan Alternatif Laptop dengan Metode TOPSIS</span><span class="toc-leader"></span><span class="toc-page">16</span></div>
+        <div class="toc-row toc-indent-1"><span class="toc-title">4.4 Validasi Komparatif (TOPSIS vs SAW vs WP) dan Uji Sensitivitas Bobot</span><span class="toc-leader"></span><span class="toc-page">20</span></div>
+        <div class="toc-row toc-indent-1"><span class="toc-title">4.5 Implementasi Aplikasi Web Laravel, <em>Analysis Lab</em> Streamlit, dan Verifikasi Lintas-Engine</span><span class="toc-leader"></span><span class="toc-page">21</span></div>
+
+        <div class="toc-row toc-bold" style="margin-top: 10px;"><span class="toc-title">BAB 5 KESIMPULAN DAN SARAN</span><span class="toc-leader"></span><span class="toc-page">27</span></div>
+        <div class="toc-row toc-indent-1"><span class="toc-title">5.1 Kesimpulan</span><span class="toc-leader"></span><span class="toc-page">27</span></div>
+        <div class="toc-row toc-indent-1"><span class="toc-title">5.2 Saran</span><span class="toc-leader"></span><span class="toc-page">27</span></div>
+
+        <div class="toc-row toc-bold" style="margin-top: 10px;"><span class="toc-title">DAFTAR PUSTAKA</span><span class="toc-leader"></span><span class="toc-page">28</span></div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- DAFTAR TABEL                               -->
+    <!-- ========================================== -->
+    <div class="toc-section">
+        <h2 class="chapter-title">DAFTAR TABEL</h2>
+        <div class="toc-row"><span class="toc-title">Tabel 2.1 Skala Perbandingan Berpasangan Saaty (1–9)</span><span class="toc-leader"></span><span class="toc-page">5</span></div>
+        <div class="toc-row"><span class="toc-title">Tabel 2.2 Nilai <em>Random Index</em> (RI) Berdasarkan Ordo Matriks (<em>n</em>)</span><span class="toc-leader"></span><span class="toc-page">5</span></div>
+        <div class="toc-row"><span class="toc-title">Tabel 2.3 Ringkasan Penelitian Terkait Pemilihan Laptop Berbasis MCDM</span><span class="toc-leader"></span><span class="toc-page">7</span></div>
+        <div class="toc-row"><span class="toc-title">Tabel 3.1 Spesifikasi 9 Kriteria Keputusan pada Sistem LapPick</span><span class="toc-leader"></span><span class="toc-page">9</span></div>
+        <div class="toc-row"><span class="toc-title">Tabel 3.2 Skema Tabel Relasional Database Sistem LapPick</span><span class="toc-leader"></span><span class="toc-page">11</span></div>
+        <div class="toc-row"><span class="toc-title">Tabel 3.3 Token Semantik Palet Warna Antarmuka (<em>Light Mode</em> vs <em>Dark Mode</em>)</span><span class="toc-leader"></span><span class="toc-page">12</span></div>
+        <div class="toc-row"><span class="toc-title">Tabel 4.1 Rekapitulasi Eksekusi Pembersihan Dataset pada Notebook 01</span><span class="toc-leader"></span><span class="toc-page">13</span></div>
+        <div class="toc-row"><span class="toc-title">Tabel 4.2 Statistik Deskriptif 9 Kriteria pada 949 Laptop Bersih (<em>laptops_clean.csv</em>)</span><span class="toc-leader"></span><span class="toc-page">13</span></div>
+        <div class="toc-row"><span class="toc-title">Tabel 4.3 Hasil Perbaikan Anomali Pemotongan Digit Kolom <em>Refresh Rate</em></span><span class="toc-leader"></span><span class="toc-page">14</span></div>
+        <div class="toc-row"><span class="toc-title">Tabel 4.4 Bobot Prioritas Kriteria (<em>w<sub>j</sub></em>) dan Indeks Konsistensi AHP pada 4 Profil Pengguna</span><span class="toc-leader"></span><span class="toc-page">15</span></div>
+        <div class="toc-row"><span class="toc-title">Tabel 4.5 Vektor Pembagi Normalisasi Euclidean (&radic;&sum;<em>x<sub>ij</sub></em><sup>2</sup>) pada 949 Alternatif Laptop</span><span class="toc-leader"></span><span class="toc-page">16</span></div>
+        <div class="toc-row"><span class="toc-title">Tabel 4.6 Hasil Top-5 Rekomendasi Laptop untuk Profil Mahasiswa (<em>student</em>)</span><span class="toc-leader"></span><span class="toc-page">17</span></div>
+        <div class="toc-row"><span class="toc-title">Tabel 4.7 Hasil Top-5 Rekomendasi Laptop untuk Profil Gamer &amp; Esports (<em>gamer</em>)</span><span class="toc-leader"></span><span class="toc-page">17</span></div>
+        <div class="toc-row"><span class="toc-title">Tabel 4.8 Hasil Top-5 Rekomendasi Laptop untuk Profil Kreator Konten (<em>creator</em>)</span><span class="toc-leader"></span><span class="toc-page">18</span></div>
+        <div class="toc-row"><span class="toc-title">Tabel 4.9 Hasil Top-5 Rekomendasi Laptop untuk Profil Pekerja Kantoran (<em>office</em>)</span><span class="toc-leader"></span><span class="toc-page">19</span></div>
+        <div class="toc-row"><span class="toc-title">Tabel 4.10 Komparasi Korelasi Peringkat Spearman (<em>&rho;</em>) antara TOPSIS, SAW, dan WP pada 949 Laptop</span><span class="toc-leader"></span><span class="toc-page">20</span></div>
+        <div class="toc-row"><span class="toc-title">Tabel 4.11 Hasil Uji Sensitivitas Perubahan Bobot Kriteria Utama (&plusmn;10% dan &plusmn;20%)</span><span class="toc-leader"></span><span class="toc-page">21</span></div>
+        <div class="toc-row"><span class="toc-title">Tabel 4.12 Hasil Verifikasi Paritas Numerik Lintas-Engine (Python NumPy vs PHP 8.3 Laravel)</span><span class="toc-leader"></span><span class="toc-page">22</span></div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- DAFTAR GAMBAR                              -->
+    <!-- ========================================== -->
+    <div class="toc-section">
+        <h2 class="chapter-title">DAFTAR GAMBAR</h2>
+        <div class="toc-row"><span class="toc-title">Gambar 4.1 Beranda Aplikasi Web Laravel (<em>Light Mode</em> — Opsi C Modern SaaS)</span><span class="toc-leader"></span><span class="toc-page">23</span></div>
+        <div class="toc-row"><span class="toc-title">Gambar 4.2 Beranda Aplikasi Web Laravel (<em>Dark Mode</em> — Opsi B Tech Spec Dark)</span><span class="toc-leader"></span><span class="toc-page">23</span></div>
+        <div class="toc-row"><span class="toc-title">Gambar 4.3 <em>Wizard</em> AHP, Uji Konsistensi (CR = 0,0245), dan <em>Hard Filter</em> Pra-TOPSIS</span><span class="toc-leader"></span><span class="toc-page">24</span></div>
+        <div class="toc-row"><span class="toc-title">Gambar 4.4 Podium Top-3, Grafik Radar 9 Dimensi, dan Tabel Peringkat TOPSIS</span><span class="toc-leader"></span><span class="toc-page">24</span></div>
+        <div class="toc-row"><span class="toc-title">Gambar 4.5 <em>Guardrail</em> Matriks Tidak Konsisten (CR = 0,3116 &gt; 0,10)</span><span class="toc-leader"></span><span class="toc-page">25</span></div>
+        <div class="toc-row"><span class="toc-title">Gambar 4.6 Perbandingan Berdampingan (<em>Side-by-Side Compare</em>) Kriteria Cost vs Benefit</span><span class="toc-leader"></span><span class="toc-page">25</span></div>
+        <div class="toc-row"><span class="toc-title">Gambar 4.7 Laboratorium Analitik Streamlit (EDA, <em>What-If</em>, Sensitivitas, Audit 10<sup>&minus;6</sup>)</span><span class="toc-leader"></span><span class="toc-page">26</span></div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- BAB 1: PENDAHULUAN                         -->
+    <!-- ========================================== -->
+    <h2 class="chapter-title" style="page-break-before: always;">BAB 1<br>PENDAHULUAN</h2>
+
+    <h3 class="section-title">1.1 Latar Belakang</h3>
+    <p>
+        Perkembangan industri perangkat komputasi bergerak (<em>laptop</em>) menghadirkan ratusan varian produk di pasar dengan kombinasi spesifikasi teknis yang sangat beragam, mulai dari arsitektur prosesor (CPU), pengolah grafis (GPU), kapasitas dan tipe memori (RAM), teknologi penyimpanan (SSD/HDD), frekuensi pembaruan layar (<em>refresh rate</em>), daya tahan baterai, bobot fisik, hingga harga jual. Keberagaman ini memicu fenomena <em>choice overload</em> (kelebihan pilihan) bagi konsumen. Ketika seorang calon pembeli dihadapkan pada hampir seribu alternatif perangkat secara bersamaan, pengambilan keputusan secara intuitif sering kali berakhir pada pilihan yang kurang optimal karena terpengaruh oleh promosi pemasaran atau sekadar melihat satu atribut tunggal seperti kapasitas RAM tanpa menimbang kinerja prosesor dan kartu grafis secara proporsional.
+    </p>
+    <p>
+        Permasalahan pemilihan laptop pada hakikatnya merupakan persoalan pengambilan keputusan multikriteria (<em>Multi-Criteria Decision Making</em> / MCDM) yang melibatkan pertukaran (<em>trade-off</em>) antara kriteria keuntungan (<em>benefit criteria</em>) dan kriteria biaya (<em>cost criteria</em>). Selain itu, setiap segmen pengguna memiliki struktur preferensi yang berbeda secara fundamental. Seorang mahasiswa umumnya memprioritaskan keterjangkauan harga, bobot yang ringan untuk mobilitas kampus, dan daya tahan baterai. Sebaliknya, seorang pemain gim kompetitif (<em>gamer</em>) menuntut performa <em>benchmark</em> GPU yang tinggi, prosesor kelas atas, dan layar berkecepatan 144 Hz hingga 360 Hz meskipun harus mengorbankan bobot perangkat dan harga. Demikian pula kreator konten membutuhkan keseimbangan antara kekuatan komputasi CPU/GPU dan kapasitas penyimpanan SSD, sementara pekerja kantoran mengutamakan portabilitas ultra-ringan dan keandalan perangkat.
+    </p>
+    <p>
+        Untuk mengatasi subjektivitas dalam penentuan bobot kepentingan antar-kriteria sekaligus menghasilkan urutan rekomendasi yang rasional dari ratusan alternatif produk, pendekatan hibrida yang menggabungkan metode <em>Analytical Hierarchy Process</em> (AHP) dan <em>Technique for Order of Preference by Similarity to Ideal Solution</em> (TOPSIS) menjadi solusi yang sangat tepat. Metode AHP yang dikembangkan oleh Thomas L. Saaty memiliki keunggulan matematis dalam menurunkan bobot prioritas kriteria melalui matriks perbandingan berpasangan berskala 1–9 disertai mekanisme pengendalian mutu logika melalui <em>Consistency Ratio</em> (CR &le; 0,10). Selanjutnya, bobot yang telah teruji konsistensinya tersebut diumpankan ke dalam algoritma TOPSIS untuk mengukur jarak geometris (<em>Euclidean distance</em>) setiap alternatif laptop terhadap solusi ideal positif (<em>A<sup>+</sup></em>) dan solusi ideal negatif (<em>A<sup>-</sup></em>).
+    </p>
+    <p>
+        Berdasarkan urgensi tersebut, proyek Ujian Akhir Semester (UAS) ini membangun <strong>LapPick</strong>, sebuah Sistem Pendukung Keputusan pemilihan laptop berbasis arsitektur ganda yang memadukan aplikasi web utama menggunakan kerangka kerja <strong>Laravel</strong> (untuk manajemen katalog, autentikasi multi-pengguna, kuesioner perbandingan berpasangan AHP, dan pelaporan rekomendasi TOPSIS) serta modul laboratorium analitik menggunakan <strong>Streamlit</strong> (untuk eksplorasi data interaktif, simulasi sensitivitas bobot secara <em>real-time</em>, dan validasi silang terhadap metode SAW serta WP). Seluruh data katalog diproses melalui alur kerja terstandar pada <strong>Google Colab</strong> menggunakan dataset publik Kaggle <em>Laptop Ranked Specifications</em> yang mencakup 949 unit laptop terverifikasi dengan 9 kriteria keputusan.
+    </p>
+
+    <h3 class="section-title">1.2 Rumusan Masalah</h3>
+    <p>
+        Berdasarkan latar belakang masalah yang telah diuraikan, rumusan masalah dalam proyek penelitian ini adalah sebagai berikut:
+    </p>
+    <ol>
+        <li>Bagaimana melakukan pembersihan data (<em>data cleaning</em>), dekode atribut ter-tokenisasi, dan perbaikan anomali spesifikasi pada dataset <em>Laptop Ranked Specifications</em> (984 entri mentah) agar menghasilkan basis data alternatif yang valid untuk perhitungan MCDM?</li>
+        <li>Bagaimana menerapkan metode <em>Analytical Hierarchy Process</em> (AHP) untuk menentukan bobot prioritas 9 kriteria pemilihan laptop yang memenuhi syarat konsistensi logis (<em>Consistency Ratio</em> &le; 0,10) baik pada 4 profil pengguna prasetel (Mahasiswa, Gamer, Kreator, Kantoran) maupun preferensi kustom?</li>
+        <li>Bagaimana mengimplementasikan metode TOPSIS untuk meranking 949 alternatif laptop secara akurat dan transparan pada aplikasi web berbasis Laravel serta memvalidasi stabilitas hasilnya terhadap metode SAW dan WP menggunakan Streamlit Analysis Lab?</li>
+    </ol>
+
+    <h3 class="section-title">1.3 Batasan Masalah</h3>
+    <p>
+        Agar pembahasan dan pengembangan sistem tetap terfokus pada tujuan akademis mata kuliah Sistem Pendukung Keputusan, ditetapkan batasan-batasan masalah sebagai berikut:
+    </p>
+    <ol>
+        <li>Dataset yang digunakan berasal dari repositori Kaggle <em>Laptop Ranked Specifications (2022)</em> oleh Dhanush Bommavaram dengan jumlah data bersih sebanyak 949 unit laptop unik dari 16 merek.</li>
+        <li>Konversi mata uang dari Rupee India (INR) ke Rupiah Indonesia (IDR) menggunakan nilai kurs tetap 1 INR = Rp 190 sebagai asumsi dasar yang konsisten di seluruh perhitungan.</li>
+        <li>Kriteria keputusan ditetapkan sebanyak 9 kriteria kuantitatif, terdiri atas 3 kriteria <em>cost</em> (Harga, Peringkat CPU, Bobot) dan 6 kriteria <em>benefit</em> (Kapasitas RAM, Storage Efektif, Skor Benchmark GPU, Daya Tahan Baterai, Rating Pengguna, dan Refresh Rate Layar).</li>
+        <li>Metode utama yang diimplementasikan adalah kombinasi AHP (pembobotan kriteria) dan TOPSIS (perankingan alternatif), sedangkan metode SAW dan WP digunakan sebagai pembanding validasi pada modul Streamlit.</li>
+        <li>Aplikasi dibangun menggunakan Laravel (antarmuka dwibahasa Indonesia/Inggris dengan fitur <em>Light/Dark Mode</em>) dan Python Streamlit tanpa mencakup fitur transaksi pembayaran <em>e-commerce</em>.</li>
+    </ol>
+
+    <h3 class="section-title">1.4 Tujuan Penelitian</h3>
+    <p>
+        Tujuan yang ingin dicapai dari pelaksanaan proyek ini meliputi:
+    </p>
+    <ol>
+        <li>Menghasilkan dataset katalog laptop bersih (<code>laptops_clean.csv</code>) berjumlah 949 baris yang bebas dari duplikasi, nilai kosong, dan galat pemotongan digit melalui <em>pipeline</em> Google Colab yang dapat direproduksi ulang.</li>
+        <li>Menghasilkan mesin perhitungan (<em>engine</em>) AHP dan TOPSIS yang identik secara numerik (toleransi selisih &lt; 10<sup>-6</sup>) antara lingkungan Python (Colab/Streamlit) dan PHP (Laravel).</li>
+        <li>Membangun aplikasi web SPK <strong>LapPick</strong> yang memudahkan pengguna memperoleh rekomendasi laptop terbaik sesuai profil kebutuhan beserta transparansi langkah perhitungan matematisnya.</li>
+    </ol>
+
+    <h3 class="section-title">1.5 Manfaat Penelitian</h3>
+    <ol>
+        <li><strong>Manfaat bagi Pengguna (Konsumen &amp; Mahasiswa):</strong> Membantu menyaring dan memilih laptop paling rasional dari ratusan pilihan berdasarkan anggaran dan prioritas penggunaan secara objektif.</li>
+        <li><strong>Manfaat Akademis:</strong> Menjadi referensi implementasi nyata <em>Hybrid Decision Support System</em> (AHP-TOPSIS) yang dilengkapi pembuktian konsistensi rasio, uji sensitivitas bobot, serta komparasi lintas metode MCDM.</li>
+    </ol>
+
+    <!-- ========================================== -->
+    <!-- BAB 2: LANDASAN TEORI                      -->
+    <!-- ========================================== -->
+    <h2 class="chapter-title" style="page-break-before: always;">BAB 2<br>LANDASAN TEORI</h2>
+
+    <h3 class="section-title">2.1 Konsep Sistem Pendukung Keputusan (SPK) dan <em>Multi-Criteria Decision Making</em> (MCDM)</h3>
+    <p>
+        Sistem Pendukung Keputusan (<em>Decision Support System</em> / DSS) merupakan sistem informasi interaktif berbasis komputer yang dirancang untuk membantu pengambil keputusan dalam memanfaatkan data dan model matematis guna menyelesaikan masalah semi-terstruktur maupun tidak terstruktur (Turban dkk., 2011). Dalam taksonomi sistem pendukung keputusan modern, permasalahan pemilihan produk dari sekumpulan alternatif diskrit dengan banyak atribut yang saling bertentangan dikategorikan ke dalam <em>Multiple Attribute Decision Making</em> (MADM), yang merupakan bagian dari keluarga <em>Multi-Criteria Decision Making</em> (MCDM).
+    </p>
+    <p>
+        Secara formal, persoalan MADM direpresentasikan ke dalam matriks keputusan <em>X</em> berukuran <em>m &times; n</em>, di mana <em>A<sub>1</sub>, A<sub>2</sub>, &hellip;, A<sub>m</sub></em> melambangkan himpunan alternatif yang dievaluasi (dalam penelitian ini <em>m</em> = 949 laptop), sedangkan <em>C<sub>1</sub>, C<sub>2</sub>, &hellip;, C<sub>n</sub></em> melambangkan himpunan kriteria keputusan (<em>n</em> = 9 kriteria), dan elemen <em>x<sub>ij</sub></em> menyatakan nilai kinerja alternatif ke-<em>i</em> terhadap kriteria ke-<em>j</em>. Setiap kriteria diklasifikasikan ke dalam dua sifat, yaitu:
+    </p>
+    <ul>
+        <li><strong>Kriteria Keuntungan (<em>Benefit Criteria</em>):</strong> Kriteria yang nilainya semakin besar maka semakin disukai (contoh: kapasitas RAM, kapasitas SSD, skor benchmark GPU, daya tahan baterai, rating pengguna, dan refresh rate layar).</li>
+        <li><strong>Kriteria Biaya (<em>Cost Criteria</em>):</strong> Kriteria yang nilainya semakin kecil maka semakin disukai (contoh: harga jual dalam Rupiah, nomor urut peringkat CPU di mana peringkat 1 adalah terbaik, dan bobot fisik laptop dalam kilogram).</li>
+    </ul>
+
+    <h3 class="section-title">2.2 Metode <em>Analytical Hierarchy Process</em> (AHP)</h3>
+    <p>
+        <em>Analytical Hierarchy Process</em> (AHP) yang diperkenalkan oleh Saaty (1980) adalah metode pengukuran melalui perbandingan berpasangan (<em>pairwise comparison</em>) yang mengandalkan penilaian pakar atau preferensi pengguna untuk menurunkan skala prioritas (bobot) dari sekumpulan kriteria. Pada matriks perbandingan berpasangan <em>A</em> berukuran <em>n &times; n</em>, elemen <em>a<sub>ij</sub></em> menyatakan tingkat kepentingan relatif kriteria ke-<em>i</em> dibandingkan kriteria ke-<em>j</em> berdasarkan skala fundamental 1 sampai 9 sebagaimana dirinci pada Tabel 2.1. Matriks ini bersifat resiprokal positif sehingga memenuhi sifat <em>a<sub>ii</sub></em> = 1 dan <em>a<sub>ji</sub></em> = 1 / <em>a<sub>ij</sub></em>.
+    </p>
+
+    <div class="caption">Tabel 2.1 Skala Perbandingan Berpasangan Saaty (1–9)</div>
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 15%;">Intensitas</th>
+                <th style="width: 35%;">Definisi Verbal</th>
+                <th style="width: 50%;">Penjelasan</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="text-align: center;">1</td>
+                <td>Sama penting (<em>Equal Importance</em>)</td>
+                <td>Kedua kriteria berkontribusi sama besar terhadap tujuan keputusan.</td>
+            </tr>
+            <tr>
+                <td style="text-align: center;">3</td>
+                <td>Sedikit lebih penting (<em>Moderate Importance</em>)</td>
+                <td>Pengalaman dan penilaian sedikit memihak satu kriteria dibanding kriteria pasangannya.</td>
+            </tr>
+            <tr>
+                <td style="text-align: center;">5</td>
+                <td>Lebih penting (<em>Strong Importance</em>)</td>
+                <td>Satu kriteria secara kuat lebih diutamakan dibanding kriteria pasangannya.</td>
+            </tr>
+            <tr>
+                <td style="text-align: center;">7</td>
+                <td>Sangat lebih penting (<em>Very Strong Importance</em>)</td>
+                <td>Satu kriteria sangat dominan dan keunggulannya tampak nyata dalam praktik.</td>
+            </tr>
+            <tr>
+                <td style="text-align: center;">9</td>
+                <td>Mutlak lebih penting (<em>Extreme Importance</em>)</td>
+                <td>Bukti yang mendukung satu kriteria atas kriteria lain berada pada tingkat kepastian tertinggi.</td>
+            </tr>
+            <tr>
+                <td style="text-align: center;">2, 4, 6, 8</td>
+                <td>Nilai tengah (<em>Intermediate Values</em>)</td>
+                <td>Digunakan apabila diperlukan kompromi di antara dua penilaian yang berdekatan.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p>
+        Langkah-langkah komputasi vektor bobot prioritas <em>w</em> = [<em>w<sub>1</sub>, w<sub>2</sub>, &hellip;, w<sub>n</sub></em>]<sup>T</sup> dan uji rasio konsistensi pada metode AHP adalah sebagai berikut:
+    </p>
+    <div class="formula-box">
+        <em>w<sub>i</sub></em> = <span style="font-size: 12pt;">&frac1n;</span> &sum;<sub><em>j</em>=1..<em>n</em></sub>
+        <span style="display: inline-block; vertical-align: middle; text-align: center;">
+            <span style="display: block; border-bottom: 1px solid #000; padding: 0 4px;"><em>a<sub>ij</sub></em></span>
+            <span style="display: block; padding: 0 4px;">&sum;<sub><em>k</em>=1..<em>n</em></sub> <em>a<sub>kj</sub></em></span>
+        </span>
+        &nbsp;&nbsp;&nbsp;;&nbsp;&nbsp;&nbsp;
+        <em>&lambda;<sub>max</sub></em> = <span style="font-size: 12pt;">&frac1n;</span> &sum;<sub><em>i</em>=1..<em>n</em></sub>
+        <span style="display: inline-block; vertical-align: middle; text-align: center;">
+            <span style="display: block; border-bottom: 1px solid #000; padding: 0 4px;">(<em>A &middot; w</em>)<sub><em>i</em></sub></span>
+            <span style="display: block; padding: 0 4px;"><em>w<sub>i</sub></em></span>
+        </span>
+        &nbsp;&nbsp;&nbsp;;&nbsp;&nbsp;&nbsp;
+        <em>CI</em> =
+        <span style="display: inline-block; vertical-align: middle; text-align: center;">
+            <span style="display: block; border-bottom: 1px solid #000; padding: 0 4px;"><em>&lambda;<sub>max</sub></em> &minus; <em>n</em></span>
+            <span style="display: block; padding: 0 4px;"><em>n</em> &minus; 1</span>
+        </span>
+        &nbsp;&nbsp;&nbsp;;&nbsp;&nbsp;&nbsp;
+        <em>CR</em> =
+        <span style="display: inline-block; vertical-align: middle; text-align: center;">
+            <span style="display: block; border-bottom: 1px solid #000; padding: 0 4px;"><em>CI</em></span>
+            <span style="display: block; padding: 0 4px;"><em>RI</em></span>
+        </span>
+    </div>
+
+    <p>
+        Apabila nilai <em>Consistency Ratio</em> memenuhi syarat <strong><em>CR</em> &le; 0,10 (10%)</strong>, maka penilaian perbandingan berpasangan dinyatakan konsisten secara logis dan bobot <em>w<sub>j</sub></em> sah digunakan pada tahap TOPSIS. Nilai <em>Random Index</em> (RI) Saaty untuk matriks berordo <em>n</em> = 1 hingga 10 ditunjukkan pada Tabel 2.2 (untuk <em>n</em> = 9 kriteria, nilai <strong>RI = 1,45</strong>).
+    </p>
+
+    <div class="caption">Tabel 2.2 Nilai <em>Random Index</em> (RI) Berdasarkan Ordo Matriks (<em>n</em>)</div>
+    <table>
+        <thead>
+            <tr>
+                <th>Ordo Matriks (<em>n</em>)</th>
+                <th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="text-align: center; font-weight: bold;">Nilai RI</td>
+                <td style="text-align: center;">0,00</td>
+                <td style="text-align: center;">0,00</td>
+                <td style="text-align: center;">0,58</td>
+                <td style="text-align: center;">0,90</td>
+                <td style="text-align: center;">1,12</td>
+                <td style="text-align: center;">1,24</td>
+                <td style="text-align: center;">1,32</td>
+                <td style="text-align: center;">1,41</td>
+                <td style="text-align: center; font-weight: bold; background: #eef6ff;">1,45</td>
+                <td style="text-align: center;">1,49</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3 class="section-title">2.3 Metode <em>Technique for Order of Preference by Similarity to Ideal Solution</em> (TOPSIS)</h3>
+    <p>
+        Metode TOPSIS yang dirumuskan oleh Hwang dan Yoon (1981) didasarkan pada prinsip bahwa alternatif terpilih yang terbaik tidak hanya memiliki jarak terpendek dari solusi ideal positif (<em>A<sup>+</sup></em>), tetapi juga memiliki jarak terjauh dari solusi ideal negatif (<em>A<sup>-</sup></em>). Tahapan perhitungan TOPSIS terdiri atas lima langkah berurutan:
+    </p>
+    <ol>
+        <li>
+            <strong>Normalisasi Vektor Matriks Keputusan (<em>R</em>):</strong> Mengubah nilai mentah <em>x<sub>ij</sub></em> yang berbeda satuan menjadi skala tak berdimensi <em>r<sub>ij</sub></em>:
+            <div class="formula-box">
+                <em>r<sub>ij</sub></em> =
+                <span style="display: inline-block; vertical-align: middle; text-align: center;">
+                    <span style="display: block; border-bottom: 1px solid #000; padding: 0 6px;"><em>x<sub>ij</sub></em></span>
+                    <span style="display: block; padding: 0 6px;">&radic;(&sum;<sub><em>i</em>=1..<em>m</em></sub> <em>x<sub>ij</sub></em><sup>2</sup>)</span>
+                </span>
+            </div>
+        </li>
+        <li>
+            <strong>Pembentukan Matriks Ternormalisasi Terbobot (<em>Y</em>):</strong> Mengalikan elemen ternormalisasi dengan bobot AHP <em>w<sub>j</sub></em>:
+            <div class="formula-box">
+                <em>y<sub>ij</sub></em> = <em>w<sub>j</sub></em> &middot; <em>r<sub>ij</sub></em>
+            </div>
+        </li>
+        <li>
+            <strong>Penentuan Solusi Ideal Positif (<em>A<sup>+</sup></em>) dan Solusi Ideal Negatif (<em>A<sup>-</sup></em>):</strong>
+            <div class="formula-box">
+                <em>A<sub>j</sub><sup>+</sup></em> = { max<sub><em>i</em></sub> <em>y<sub>ij</sub></em> jika <em>j</em> &isin; <em>Benefit</em> &nbsp;;&nbsp; min<sub><em>i</em></sub> <em>y<sub>ij</sub></em> jika <em>j</em> &isin; <em>Cost</em> }<br>
+                <em>A<sub>j</sub><sup>-</sup></em> = { min<sub><em>i</em></sub> <em>y<sub>ij</sub></em> jika <em>j</em> &isin; <em>Benefit</em> &nbsp;;&nbsp; max<sub><em>i</em></sub> <em>y<sub>ij</sub></em> jika <em>j</em> &isin; <em>Cost</em> }
+            </div>
+        </li>
+        <li>
+            <strong>Perhitungan Jarak Euclidean (<em>D<sub>i</sub><sup>+</sup></em> dan <em>D<sub>i</sub><sup>-</sup></em>):</strong>
+            <div class="formula-box">
+                <em>D<sub>i</sub><sup>+</sup></em> = &radic;( &sum;<sub><em>j</em>=1..<em>n</em></sub> (<em>y<sub>ij</sub></em> &minus; <em>A<sub>j</sub><sup>+</sup></em>)<sup>2</sup> )
+                &nbsp;&nbsp;&nbsp;&nbsp;;&nbsp;&nbsp;&nbsp;&nbsp;
+                <em>D<sub>i</sub><sup>-</sup></em> = &radic;( &sum;<sub><em>j</em>=1..<em>n</em></sub> (<em>y<sub>ij</sub></em> &minus; <em>A<sub>j</sub><sup>-</sup></em>)<sup>2</sup> )
+            </div>
+        </li>
+        <li>
+            <strong>Perhitungan Nilai Preferensi Relatif (<em>C<sub>i</sub></em>):</strong> Nilai kedekatan relatif berada pada rentang [0, 1], di mana alternatif dengan nilai <em>C<sub>i</sub></em> tertinggi menempati peringkat pertama:
+            <div class="formula-box">
+                <em>C<sub>i</sub></em> =
+                <span style="display: inline-block; vertical-align: middle; text-align: center;">
+                    <span style="display: block; border-bottom: 1px solid #000; padding: 0 6px;"><em>D<sub>i</sub><sup>-</sup></em></span>
+                    <span style="display: block; padding: 0 6px;"><em>D<sub>i</sub><sup>+</sup></em> + <em>D<sub>i</sub><sup>-</sup></em></span>
+                </span>
+            </div>
+        </li>
+    </ol>
+
+    <h3 class="section-title">2.4 Metode Pembanding: SAW dan WP</h3>
+    <p>
+        Sebagai instrumen verifikasi objektif pada laboratorium analitik Streamlit, hasil perankingan TOPSIS dibandingkan terhadap dua metode MADM klasik lainnya menggunakan bobot AHP yang sama:
+    </p>
+    <ul>
+        <li><strong><em>Simple Additive Weighting</em> (SAW):</strong> Melakukan normalisasi linier maksimum/minimum (<em>r<sub>ij</sub> = x<sub>ij</sub> / max<sub>i</sub> x<sub>ij</sub></em> untuk <em>benefit</em> dan <em>r<sub>ij</sub> = min<sub>i</sub> x<sub>ij</sub> / x<sub>ij</sub></em> untuk <em>cost</em>), kemudian menghitung penjumlahan terbobot <em>V<sub>i</sub> = &sum; w<sub>j</sub> r<sub>ij</sub></em>.</li>
+        <li><strong><em>Weighted Product</em> (WP):</strong> Menggunakan perkalian antar-atribut di mana setiap nilai atribut dipangkatkan dengan bobotnya (positif untuk <em>benefit</em>, negatif untuk <em>cost</em>): <em>S<sub>i</sub> = &prod; x<sub>ij</sub><sup>&plusmn;w<sub>j</sub></sup></em> dan <em>V<sub>i</sub> = S<sub>i</sub> / &sum; S<sub>k</sub></em>.</li>
+    </ul>
+
+    <h3 class="section-title">2.5 Penelitian Terkait</h3>
+    <p>
+        Tabel 2.3 merangkum beberapa penelitian terdahulu yang relevan dengan penerapan metode AHP, TOPSIS, SAW, dan WP dalam sistem pendukung keputusan pemilihan perangkat laptop.
+    </p>
+
+    <div class="caption">Tabel 2.3 Ringkasan Penelitian Terkait Pemilihan Laptop Berbasis MCDM</div>
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 5%;">No</th>
+                <th style="width: 22%;">Peneliti &amp; Tahun</th>
+                <th style="width: 23%;">Metode &amp; Kriteria</th>
+                <th style="width: 50%;">Temuan Utama &amp; Celah terhadap LapPick</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="text-align: center;">1</td>
+                <td>Pratama &amp; Setiawan (2022)</td>
+                <td>AHP + TOPSIS (5 kriteria: Harga, RAM, Storage, CPU, Layar)</td>
+                <td>Berhasil menerapkan AHP-TOPSIS pada 30 sampel laptop lokal, namun belum menyertakan skor <em>benchmark</em> GPU/CPU kuantitatif dan belum menguji sensitivitas bobot.</td>
+            </tr>
+            <tr>
+                <td style="text-align: center;">2</td>
+                <td>Kurniawan dkk. (2023)</td>
+                <td>SAW vs TOPSIS (6 kriteria spesifikasi laptop)</td>
+                <td>Menunjukkan bahwa TOPSIS memberikan pemisahan skor yang lebih tegas dibanding SAW ketika terdapat alternatif dengan harga ekstrem, namun bobot masih ditentukan secara subjektif tanpa uji CR AHP.</td>
+            </tr>
+            <tr>
+                <td style="text-align: center;">3</td>
+                <td>Wijaya &amp; Lestari (2024)</td>
+                <td>AHP + WP (Pemilihan Laptop Mahasiswa)</td>
+                <td>Fokus hanya pada satu segmen (mahasiswa) dengan 50 data katalog statis dan belum menyediakan analisis komparasi lintas metode maupun antarmuka multi-profil.</td>
+            </tr>
+            <tr>
+                <td style="text-align: center;">4</td>
+                <td><strong>Proyek LapPick (2026)</strong></td>
+                <td><strong>Hibrida AHP + TOPSIS + Validasi SAW/WP (9 Kriteria, 949 Laptop)</strong></td>
+                <td>Menggunakan 949 data laptop terverifikasi dengan <em>benchmark</em> CPU/GPU riil, mendukung 4 profil prasetel + mode kustom ber-guardrail CR &le; 0,10, serta mengintegrasikan Laravel dan Streamlit Analysis Lab.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- ========================================== -->
+    <!-- BAB 3: METODOLOGI PENELITIAN               -->
+    <!-- ========================================== -->
+    <h2 class="chapter-title" style="page-break-before: always;">BAB 3<br>METODOLOGI PENELITIAN</h2>
+
+    <h3 class="section-title">3.1 Tahapan Penelitian</h3>
+    <p>
+        Metodologi pelaksanaan proyek UAS ini dirancang ke dalam enam tahapan sistematis yang saling berkesinambungan:
+    </p>
+    <ol>
+        <li><strong>Identifikasi Masalah &amp; Perumusan Kriteria:</strong> Menetapkan 9 kriteria keputusan (C1–C9) beserta sifat <em>cost/benefit</em> dan merancang 4 persona profil pengguna (Mahasiswa, Gamer, Kreator, Kantoran).</li>
+        <li><strong>Akuisisi Data &amp; <em>Data Cleaning</em> di Google Colab (Notebook 01):</strong> Mengunduh dataset <em>Laptop Ranked Specifications</em> dari Kaggle, men-<em>decode</em> token kategori, memperbaiki anomali pencatatan <em>Refresh Rate</em>, menangani nilai kosong secara transparan, dan mengekspor <code>laptops_clean.csv</code>.</li>
+        <li><strong>Prototipe Matematis &amp; Validasi MCDM di Google Colab (Notebook 02):</strong> Menyusun matriks perbandingan berpasangan AHP berordo 9&times;9, menguji konsistensi rasio (CR &le; 0,10), mengeksekusi TOPSIS, SAW, dan WP, melakukan uji sensitivitas bobot (&plusmn;10% dan &plusmn;20%), serta menghasilkan berkas acuan uji (<code>topsis_fixture.json</code>).</li>
+        <li><strong>Pengembangan Aplikasi Web Utama (Laravel):</strong> Mengimplementasikan skema database, <em>seeder</em> 949 laptop, <code>AhpService</code>, <code>TopsisService</code>, antarmuka <em>Wizard</em> 3 langkah dwibahasa (ID/EN) dengan <em>Light/Dark Mode</em>, fitur perbandingan berdampingan (<em>Compare</em>), dan riwayat keputusan.</li>
+        <li><strong>Pengembangan Modul Analitik (Streamlit Analysis Lab):</strong> Membangun dasbor Python interaktif untuk visualisasi distribusi katalog, simulator <em>what-if</em> bobot kriteria, uji sensitivitas, dan komparasi korelasi peringkat Spearman antara TOPSIS, SAW, dan WP.</li>
+        <li><strong>Pengujian Silang (<em>Cross-Check</em>) &amp; Penyusunan Laporan:</strong> Memverifikasi kesamaan hasil numerik antara mesin PHP Laravel dan Python menggunakan unit test otomatis serta menyusun dokumentasi akhir.</li>
+    </ol>
+
+    <h3 class="section-title">3.2 Sumber Dataset dan Definisi 9 Kriteria Keputusan</h3>
+    <p>
+        Dataset yang digunakan dalam penelitian ini diambil dari repositori publik Kaggle dengan judul <strong><em>Laptop Ranked Specifications (2022)</em></strong> yang disusun oleh Dhanush Bommavaram (<a href="https://www.kaggle.com/datasets/dhanushbommavaram/laptop-ranked-dataset">https://www.kaggle.com/datasets/dhanushbommavaram/laptop-ranked-dataset</a>, lisensi CC BY-SA 4.0). Dataset ini dipilih karena memiliki kelengkapan atribut yang jarang dimiliki dataset laptop lain, yaitu keberadaan <strong>skor <em>benchmark</em> GPU</strong> (dari <em>UserBenchmark</em>), <strong>peringkat CPU</strong>, <strong>daya tahan baterai (jam)</strong>, <strong>rating pengguna riil</strong>, serta <strong>refresh rate layar (Hz)</strong>. Tabel 3.1 menyajikan definisi kesembilan kriteria yang digunakan dalam model keputusan LapPick.
+    </p>
+
+    <div class="caption">Tabel 3.1 Spesifikasi 9 Kriteria Keputusan pada Sistem LapPick</div>
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 8%;">Kode</th>
+                <th style="width: 24%;">Nama Kriteria</th>
+                <th style="width: 12%;">Sifat</th>
+                <th style="width: 10%;">Satuan</th>
+                <th style="width: 20%;">Kolom Dataset Bersih</th>
+                <th style="width: 26%;">Keterangan &amp; Transformasi</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="text-align: center; font-weight: bold;">C1</td>
+                <td>Harga Laptop (<em>Price</em>)</td>
+                <td style="text-align: center;">Cost</td>
+                <td style="text-align: center;">Rp</td>
+                <td><code>price_idr</code></td>
+                <td>Konversi <code>Price (in INR) &times; 190</code>. Semakin murah semakin baik.</td>
+            </tr>
+            <tr>
+                <td style="text-align: center; font-weight: bold;">C2</td>
+                <td>Kapasitas RAM</td>
+                <td style="text-align: center;">Benefit</td>
+                <td style="text-align: center;">GB</td>
+                <td><code>ram_gb</code></td>
+                <td>Kapasitas memori utama (4 GB s.d. 32 GB).</td>
+            </tr>
+            <tr>
+                <td style="text-align: center; font-weight: bold;">C3</td>
+                <td>Storage Efektif</td>
+                <td style="text-align: center;">Benefit</td>
+                <td style="text-align: center;">GB</td>
+                <td><code>storage_effective_gb</code></td>
+                <td>Kapasitas penyimpanan dikalikan faktor kecepatan (SSD &times; 1,0; Non-SSD &times; 0,6).</td>
+            </tr>
+            <tr>
+                <td style="text-align: center; font-weight: bold;">C4</td>
+                <td>Peringkat CPU</td>
+                <td style="text-align: center;">Cost</td>
+                <td style="text-align: center;">Peringkat</td>
+                <td><code>cpu_ranking</code></td>
+                <td>Nomor peringkat prosesor (1 = tertinggi). Semakin kecil angkanya semakin baik.</td>
+            </tr>
+            <tr>
+                <td style="text-align: center; font-weight: bold;">C5</td>
+                <td>Skor Benchmark GPU</td>
+                <td style="text-align: center;">Benefit</td>
+                <td style="text-align: center;">Poin</td>
+                <td><code>gpu_benchmark</code></td>
+                <td>Skor kinerja kartu grafis (1,0 s.d. 233,0). Semakin besar semakin baik.</td>
+            </tr>
+            <tr>
+                <td style="text-align: center; font-weight: bold;">C6</td>
+                <td>Daya Tahan Baterai</td>
+                <td style="text-align: center;">Benefit</td>
+                <td style="text-align: center;">Jam</td>
+                <td><code>battery_hours</code></td>
+                <td>Estimasi ketahanan baterai (4,0 s.d. 5,0 jam).</td>
+            </tr>
+            <tr>
+                <td style="text-align: center; font-weight: bold;">C7</td>
+                <td>Bobot Fisik</td>
+                <td style="text-align: center;">Cost</td>
+                <td style="text-align: center;">kg</td>
+                <td><code>weight_kg</code></td>
+                <td>Berat laptop dalam kilogram (0,78 s.d. 2,90 kg). Semakin ringan semakin baik.</td>
+            </tr>
+            <tr>
+                <td style="text-align: center; font-weight: bold;">C8</td>
+                <td>Rating Pengguna</td>
+                <td style="text-align: center;">Benefit</td>
+                <td style="text-align: center;">Skala 1–5</td>
+                <td><code>user_rating</code></td>
+                <td>Penilaian ulasan pembeli pada <em>marketplace</em> (1,8 s.d. 5,0).</td>
+            </tr>
+            <tr>
+                <td style="text-align: center; font-weight: bold;">C9</td>
+                <td>Refresh Rate Layar</td>
+                <td style="text-align: center;">Benefit</td>
+                <td style="text-align: center;">Hz</td>
+                <td><code>refresh_rate_hz</code></td>
+                <td>Frekuensi layar (60 Hz, 90 Hz, 120 Hz, 144 Hz, 165 Hz, 240 Hz, 300 Hz, 360 Hz).</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3 class="section-title">3.3 Alur Pembersihan Data (<em>Data Cleaning</em>) dan Rekayasa Fitur di Google Colab</h3>
+    <p>
+        Pada dataset mentah, sejumlah kolom kategorikal disimpan dalam bentuk kode angka (tokenisasi), serta terdapat potensi duplikasi baris, nilai kosong pada atribut ulasan pengguna, dan ketidakwajaran ekstraksi angka pada kolom <em>Refresh Rate</em>. Oleh karena itu, dirancang <em>pipeline</em> pembersihan data otomatis di dalam notebook <code>01_data_cleaning_feature_eng.ipynb</code> yang mencakup lima langkah:
+    </p>
+    <ol>
+        <li><strong>Dekode Token Kategorikal:</strong> Mengembalikan kode integer pada kolom <code>company</code> (1=ASUS, 2=HP, 3=Lenovo, ..., 16=VAIO), <code>Type</code> (1=Gaming Laptop, 2=Thin and Light Laptop, ..., 9=Creator Laptop), <code>Processor Brand</code>, dan <code>Operating System</code> menjadi label teks yang informatif.</li>
+        <li><strong>Penghapusan Duplikat Eksplisit:</strong> Menghapus baris yang memiliki kombinasi identik pada <code>(name, price_inr, ram_gb, storage_gb, cpu_name)</code>.</li>
+        <li><strong>Transformasi Kriteria Turunan:</strong> Menghitung <code>price_idr = price_inr &times; 190</code> dan menghitung <code>storage_effective_gb</code> dengan memberikan faktor bobot 1,0 untuk laptop ber-SSD serta 0,6 untuk laptop yang masih menggunakan HDD mekanis.</li>
+        <li><strong>Rekonstruksi Forensik <em>Refresh Rate</em>:</strong> Mengekstrak ulang angka frekuensi layar (2–3 digit sebelum satuan <code>hz</code>) langsung dari deskripsi nama produk (<code>name</code>) menggunakan ekspresi reguler <code>(\d{2,3})\s*hz</code> untuk memperbaiki bug pemotongan digit pada CSV asli.</li>
+        <li><strong>Penanganan <em>Missing Values</em> Terdokumentasi:</strong> Mengisi nilai kosong pada <code>user_rating</code> menggunakan median kelompok berdasarkan kategori laptop (<code>type_name</code>) dan menandainya dengan kolom bendera <code>is_imputed = 1</code>.</li>
+    </ol>
+
+    <h3 class="section-title">3.4 Perancangan Arsitektur Sistem Hibrida (Laravel + Streamlit)</h3>
+    <p>
+        Sistem LapPick memisahkan tanggung jawab operasional dan analitik ke dalam dua layanan yang saling terhubung melalui artefak data bersih yang sama (<code>data/clean/</code>):
+    </p>
+    <ul>
+        <li><strong>Aplikasi Web Utama (<code>lappick-laravel</code>):</strong> Dibangun di atas Laravel 13 (PHP 8.3.36), SQLite (siap pakai dan kompatibel MySQL), Tailwind CSS, serta Chart.js. Menangani autentikasi pengguna, manajemen CRUD katalog oleh Admin, antarmuka <em>Wizard</em> pemilihan profil &amp; perbandingan berpasangan AHP (3 mode input dengan <em>guardrail</em> CR &le; 0,10), eksekusi perankingan TOPSIS, fitur <em>Compare</em> (membandingkan 2–4 laptop berdampingan), serta penyimpanan riwayat keputusan lengkap dengan ekspor CSV/PDF.</li>
+        <li><strong>Laboratorium Analitik (<code>lab-streamlit</code>):</strong> Dibangun menggunakan Python 3.13, Streamlit 1.67, Pandas, NumPy, SciPy, dan Plotly. Mengonsumsi artefak <code>laptops_clean.csv</code>, <code>preset_profiles.json</code>, dan <code>topsis_fixture.json</code> untuk menyajikan eksplorasi distribusi data (EDA), simulator perubahan bobot interaktif (<em>what-if analysis</em>), pengujian sensitivitas bobot (&plusmn;10% dan &plusmn;20%), komparasi TOPSIS terhadap SAW dan WP, serta audit kontrak numerik 10<sup>&minus;6</sup>.</li>
+    </ul>
+
+    <div class="caption">Tabel 3.2 Skema Tabel Relasional Database Sistem LapPick</div>
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 22%;">Nama Tabel</th>
+                <th style="width: 43%;">Atribut Kunci &amp; Kolom Utama</th>
+                <th style="width: 35%;">Fungsi dalam Sistem SPK</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>users</code></td>
+                <td><code>id, name, email, password, role ('admin'|'user')</code></td>
+                <td>Manajemen akun pengguna dan hak akses administrator katalog.</td>
+            </tr>
+            <tr>
+                <td><code>laptops</code></td>
+                <td><code>id, brand, name, type_name, os, cpu_name, gpu_name, price_inr, price_idr, ram_gb, storage_gb, storage_effective_gb, cpu_ranking, gpu_benchmark, battery_hours, weight_kg, user_rating, refresh_rate_hz, is_imputed</code></td>
+                <td>Menyimpan 949 alternatif laptop (ID primer 1..949 tetap terjaga untuk <em>tie-breaker</em>) beserta 9 kolom kriteria kuantitatif dan metadata tampilan.</td>
+            </tr>
+            <tr>
+                <td><code>criteria</code></td>
+                <td><code>id, code (C1..C9), name_id, name_en, type ('cost'|'benefit'), unit, column_name, default_weight, sort_order</code></td>
+                <td>Menyimpan definisi 9 kriteria dwibahasa secara dinamis dari seeder tanpa <em>hardcode</em>.</td>
+            </tr>
+            <tr>
+                <td><code>preset_profiles</code></td>
+                <td><code>id, slug, name_id, name_en, description_id, description_en, pairwise_matrix, weights, lambda_max, ci, ri, cr, is_consistent</code></td>
+                <td>Menyimpan 4 prasetel profil (Mahasiswa, Gamer, Kreator, Kantoran) beserta matriks 9&times;9 JSON yang telah terverifikasi CR &le; 0,10.</td>
+            </tr>
+            <tr>
+                <td><code>decision_histories</code></td>
+                <td><code>id, user_id, profile_slug, mode, pairwise_matrix, weights, lambda_max, ci, cr, is_consistent, filters, top_results, total_candidates, created_at</code></td>
+                <td>Mencatat sesi pengambilan keputusan pengguna beserta bobot AHP, uji CR, parameter filter, dan rekam Top-10 hasil peringkat TOPSIS.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3 class="section-title">3.5 Perancangan Antarmuka (<em>Design System</em> Dwibahasa &amp; <em>Light/Dark Mode</em>)</h3>
+    <p>
+        Mengacu pada dokumen spesifikasi <code>02_DESIGN_SYSTEM_SPK_LAPTOP.md</code>, antarmuka pengguna LapPick mengadopsi gaya <strong>Modern SaaS Dashboard</strong> yang dilengkapi pengalih tema terang/gelap (<em>Light/Dark Mode</em>, di mana mode gelap menggunakan palet <em>Tech Spec Dark</em>) dan lokalisasi dwibahasa penuh (Bahasa Indonesia dan Bahasa Inggris). Tabel 3.3 merangkum token warna semantik yang digunakan secara konsisten di seluruh komponen.
+    </p>
+
+    <div class="caption">Tabel 3.3 Token Semantik Palet Warna Antarmuka (<em>Light Mode</em> vs <em>Dark Mode</em>)</div>
+    <table>
+        <thead>
+            <tr>
+                <th>Token Semantik</th>
+                <th>Nilai <em>Light Mode</em> (SaaS Clean)</th>
+                <th>Nilai <em>Dark Mode</em> (Tech Spec Dark)</th>
+                <th>Peruntukan Komponen UI</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>--bg</code></td>
+                <td><code>#F8FAFC</code> (Slate 50)</td>
+                <td><code>#0F1117</code> (Carbon Dark)</td>
+                <td>Latar belakang halaman utama aplikasi.</td>
+            </tr>
+            <tr>
+                <td><code>--surface</code></td>
+                <td><code>#FFFFFF</code> (Pure White)</td>
+                <td><code>#1A1D27</code> (Gunmetal Surface)</td>
+                <td>Kartu rekomendasi laptop, modal, dan panel tabel.</td>
+            </tr>
+            <tr>
+                <td><code>--primary</code></td>
+                <td><code>#4F46E5</code> (Indigo 600)</td>
+                <td><code>#8B5CF6</code> (Violet 500)</td>
+                <td>Tombol aksi utama, indikator langkah <em>Wizard</em>, dan grafik radar.</td>
+            </tr>
+            <tr>
+                <td><code>--accent</code></td>
+                <td><code>#10B981</code> (Emerald 500)</td>
+                <td><code>#22D3EE</code> (Cyan Neon)</td>
+                <td><em>Badge Match %</em> (skor TOPSIS) dan indikator konsistensi CR &le; 0,10.</td>
+            </tr>
+            <tr>
+                <td><code>--danger</code></td>
+                <td><code>#EF4444</code> (Red 500)</td>
+                <td><code>#F87171</code> (Red 400)</td>
+                <td>Peringatan ketidakkonsistenan matriks AHP (CR &gt; 0,10).</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- ========================================== -->
+    <!-- BAB 4: HASIL DAN PEMBAHASAN                -->
+    <!-- ========================================== -->
+    <h2 class="chapter-title" style="page-break-before: always;">BAB 4<br>HASIL DAN PEMBAHASAN</h2>
+
+    <h3 class="section-title">4.1 Hasil Pembersihan Data dan Perbaikan Anomali Dataset (Colab Notebook 01)</h3>
+    <p>
+        Tahap pertama eksperimen dieksekusi pada Google Colab melalui berkas <code>01_data_cleaning_feature_eng.ipynb</code> terhadap dataset mentah <em>Laptop Ranked Specifications</em> yang berjumlah 984 baris dan 27 kolom. Hasil eksekusi yang terekam pada <code>cleaning_log.json</code> menunjukkan bahwa terdapat 35 baris duplikat identik yang berhasil dieliminasi, sehingga menyisakan <strong>949 unit laptop unik</strong>. Pemeriksaan kelengkapan atribut membuktikan bahwa 8 dari 9 kriteria tidak memiliki nilai kosong sama sekali (0 <em>missing values</em>), sedangkan atribut <code>user_rating</code> memiliki 277 nilai kosong (29,19%) yang ditangani melalui imputasi median per kategori laptop (<code>type_name</code>) dengan nilai median global sebesar 4,30. Tabel 4.1 dan Tabel 4.2 merangkum hasil pembersihan data serta statistik deskriptif kesembilan kriteria pada 949 laptop bersih.
+    </p>
+
+    <div class="caption">Tabel 4.1 Rekapitulasi Eksekusi Pembersihan Dataset pada Notebook 01</div>
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 8%;">No</th>
+                <th style="width: 47%;">Parameter Pemrosesan Data</th>
+                <th style="width: 20%;">Nilai / Jumlah</th>
+                <th style="width: 25%;">Status Validasi</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="text-align: center;">1</td>
+                <td>Jumlah baris awal dataset mentah (<code>Laptop ranked dataset.csv</code>)</td>
+                <td style="text-align: right;">984 baris</td>
+                <td style="text-align: center;">Terverifikasi</td>
+            </tr>
+            <tr>
+                <td style="text-align: center;">2</td>
+                <td>Jumlah baris duplikat identik yang dihapus</td>
+                <td style="text-align: right;">35 baris</td>
+                <td style="text-align: center;">Dibersihkan</td>
+            </tr>
+            <tr>
+                <td style="text-align: center;">3</td>
+                <td>Jumlah baris dengan <em>missing value</em> pada <code>user_rating</code> (diimputasi median per tipe)</td>
+                <td style="text-align: right;">277 baris</td>
+                <td style="text-align: center;">Ditandai (<code>is_imputed=1</code>)</td>
+            </tr>
+            <tr>
+                <td style="text-align: center;">4</td>
+                <td>Jumlah baris dengan anomali pemotongan digit <code>Refresh Rate</code> yang diperbaiki</td>
+                <td style="text-align: right;">151 baris</td>
+                <td style="text-align: center;">Direkonstruksi 100%</td>
+            </tr>
+            <tr>
+                <td style="text-align: center;">5</td>
+                <td><strong>Jumlah akhir alternatif laptop bersih (<code>laptops_clean.csv</code>)</strong></td>
+                <td style="text-align: right; font-weight: bold;">949 laptop</td>
+                <td style="text-align: center; font-weight: bold;">Lolos <em>Assert Check</em></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="caption">Tabel 4.2 Statistik Deskriptif 9 Kriteria pada 949 Laptop Bersih (<em>laptops_clean.csv</em>)</div>
+    <table>
+        <thead>
+            <tr>
+                <th>Kode</th>
+                <th>Kriteria</th>
+                <th>Sifat</th>
+                <th>Nilai Minimum</th>
+                <th>Nilai Median</th>
+                <th>Nilai Rata-Rata</th>
+                <th>Nilai Maksimum</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="text-align: center;">C1</td>
+                <td>Harga (<code>price_idr</code>)</td>
+                <td style="text-align: center;">Cost</td>
+                <td style="text-align: right;">Rp 3.038.100</td>
+                <td style="text-align: right;">Rp 11.398.100</td>
+                <td style="text-align: right;">Rp 13.182.792</td>
+                <td style="text-align: right;">Rp 57.378.100</td>
+            </tr>
+            <tr>
+                <td style="text-align: center;">C2</td>
+                <td>Kapasitas RAM (<code>ram_gb</code>)</td>
+                <td style="text-align: center;">Benefit</td>
+                <td style="text-align: right;">4 GB</td>
+                <td style="text-align: right;">8 GB</td>
+                <td style="text-align: right;">10,31 GB</td>
+                <td style="text-align: right;">32 GB</td>
+            </tr>
+            <tr>
+                <td style="text-align: center;">C3</td>
+                <td>Storage Efektif (<code>storage_effective_gb</code>)</td>
+                <td style="text-align: center;">Benefit</td>
+                <td style="text-align: right;">19,2 GB</td>
+                <td style="text-align: right;">512,0 GB</td>
+                <td style="text-align: right;">614,28 GB</td>
+                <td style="text-align: right;">2.000,0 GB</td>
+            </tr>
+            <tr>
+                <td style="text-align: center;">C4</td>
+                <td>Peringkat CPU (<code>cpu_ranking</code>)</td>
+                <td style="text-align: center;">Cost</td>
+                <td style="text-align: right;">4</td>
+                <td style="text-align: right;">108</td>
+                <td style="text-align: right;">231,57</td>
+                <td style="text-align: right;">907</td>
+            </tr>
+            <tr>
+                <td style="text-align: center;">C5</td>
+                <td>Skor GPU (<code>gpu_benchmark</code>)</td>
+                <td style="text-align: center;">Benefit</td>
+                <td style="text-align: right;">1,00</td>
+                <td style="text-align: right;">17,50</td>
+                <td style="text-align: right;">40,18</td>
+                <td style="text-align: right;">233,00</td>
+            </tr>
+            <tr>
+                <td style="text-align: center;">C6</td>
+                <td>Baterai (<code>battery_hours</code>)</td>
+                <td style="text-align: center;">Benefit</td>
+                <td style="text-align: right;">4,00 jam</td>
+                <td style="text-align: right;">4,50 jam</td>
+                <td style="text-align: right;">4,42 jam</td>
+                <td style="text-align: right;">5,00 jam</td>
+            </tr>
+            <tr>
+                <td style="text-align: center;">C7</td>
+                <td>Bobot (<code>weight_kg</code>)</td>
+                <td style="text-align: center;">Cost</td>
+                <td style="text-align: right;">0,78 kg</td>
+                <td style="text-align: right;">1,65 kg</td>
+                <td style="text-align: right;">1,67 kg</td>
+                <td style="text-align: right;">2,90 kg</td>
+            </tr>
+            <tr>
+                <td style="text-align: center;">C8</td>
+                <td>Rating Pengguna (<code>user_rating</code>)</td>
+                <td style="text-align: center;">Benefit</td>
+                <td style="text-align: right;">1,80</td>
+                <td style="text-align: right;">4,30</td>
+                <td style="text-align: right;">4,23</td>
+                <td style="text-align: right;">5,00</td>
+            </tr>
+            <tr>
+                <td style="text-align: center;">C9</td>
+                <td>Refresh Rate (<code>refresh_rate_hz</code>)</td>
+                <td style="text-align: center;">Benefit</td>
+                <td style="text-align: right;">60 Hz</td>
+                <td style="text-align: right;">60 Hz</td>
+                <td style="text-align: right;">73,57 Hz</td>
+                <td style="text-align: right;">360 Hz</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p>
+        <strong>Temuan Forensik Data pada Kolom <em>Refresh Rate</em>:</strong> Saat menginspeksi distribusi awal hasil Notebook 01, ditemukan anomali kritis pada dataset asli Kaggle di mana terdapat 151 unit laptop yang memiliki nilai <code>Refresh Rate</code> bernilai <code>1</code>, <code>2</code>, <code>3</code>, <code>6</code>, dan <code>9</code>. Setelah ditelusuri terhadap teks judul produk (<code>name</code>), terbukti bahwa penyusun dataset asli melakukan kesalahan pemotongan string (<em>string slicing bug</em>) yang hanya mengambil digit pertama dari angka frekuensi layar: laptop <code>120 Hz</code>, <code>144 Hz</code>, dan <code>165 Hz</code> tercatat sebagai <code>1</code>; laptop <code>240 Hz</code> tercatat sebagai <code>2</code>; laptop <code>300 Hz</code> dan <code>360 Hz</code> tercatat sebagai <code>3</code>; serta laptop <code>90 Hz</code> tercatat sebagai <code>9</code>. Apabila anomali ini tidak diperbaiki, metode TOPSIS akan menilai laptop gaming 360 Hz memiliki kualitas layar 20 kali lebih buruk dibanding laptop standar 60 Hz. Melalui ekstraksi ekspresi reguler pada nama produk, seluruh 151 baris tersebut berhasil dipulihkan secara presisi sebagaimana dirinci pada Tabel 4.3.
+    </p>
+
+    <div class="caption">Tabel 4.3 Hasil Perbaikan Anomali Pemotongan Digit Kolom <em>Refresh Rate</em></div>
+    <table>
+        <thead>
+            <tr>
+                <th>Nilai Cacat di CSV Asli</th>
+                <th>Jumlah Baris</th>
+                <th>Hasil Ekstraksi Regex dari Kolom <code>name</code></th>
+                <th>Distribusi Akhir Setelah Diperbaiki (Total 949 Unit)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="text-align: center;"><code>1</code></td>
+                <td style="text-align: center;">91 unit</td>
+                <td>50 unit <code>144 Hz</code>, 31 unit <code>120 Hz</code>, 9 unit <code>165 Hz</code>, 1 unit fallback <code>144 Hz</code></td>
+                <td rowspan="6" style="vertical-align: middle;">
+                    &bull; <strong>60 Hz:</strong> 845 unit (89,04%)<br>
+                    &bull; <strong>90 Hz:</strong> 4 unit (0,42%)<br>
+                    &bull; <strong>120 Hz:</strong> 31 unit (3,27%)<br>
+                    &bull; <strong>144 Hz:</strong> 51 unit (5,37%)<br>
+                    &bull; <strong>165 Hz:</strong> 9 unit (0,95%)<br>
+                    &bull; <strong>240 Hz:</strong> 3 unit (0,32%)<br>
+                    &bull; <strong>300 Hz:</strong> 5 unit (0,53%)<br>
+                    &bull; <strong>360 Hz:</strong> 1 unit (0,11%)
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: center;"><code>2</code></td>
+                <td style="text-align: center;">3 unit</td>
+                <td>3 unit <code>240 Hz</code> (MSI GP66/GP76 Leopard &amp; Predator Helios)</td>
+            </tr>
+            <tr>
+                <td style="text-align: center;"><code>3</code></td>
+                <td style="text-align: center;">6 unit</td>
+                <td>5 unit <code>300 Hz</code>, 1 unit <code>360 Hz</code> (Acer Predator Helios 300 &amp; ROG Strix)</td>
+            </tr>
+            <tr>
+                <td style="text-align: center;"><code>6</code></td>
+                <td style="text-align: center;">47 unit</td>
+                <td>47 unit <code>60 Hz</code> (ThinkBook, Vostro, Modern 14)</td>
+            </tr>
+            <tr>
+                <td style="text-align: center;"><code>9</code></td>
+                <td style="text-align: center;">4 unit</td>
+                <td>4 unit <code>90 Hz</code> (ASUS VivoBook Pro/S14 OLED)</td>
+            </tr>
+            <tr>
+                <td style="text-align: center;"><code>60</code></td>
+                <td style="text-align: center;">798 unit</td>
+                <td>798 unit tetap <code>60 Hz</code> (layar standar non-gaming)</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3 class="section-title">4.2 Hasil Pembobotan Kriteria dan Uji Konsistensi AHP pada 4 Profil Pengguna</h3>
+    <p>
+        Pada tahap kedua, matriks perbandingan berpasangan berukuran 9&times;9 disusun untuk masing-masing dari empat profil pengguna prasetel (<em>Mahasiswa, Gamer, Kreator Konten, dan Pekerja Kantoran</em>). Tabel 4.4 menyajikan bobot prioritas ternormalisasi (<em>w<sub>1</sub></em> s.d. <em>w<sub>9</sub></em>) beserta nilai eigen maksimum (<em>&lambda;<sub>max</sub></em>), <em>Consistency Index</em> (CI), dan <em>Consistency Ratio</em> (CR) dengan <em>Random Index</em> RI = 1,45 (untuk <em>n</em> = 9).
+    </p>
+
+    <div class="caption">Tabel 4.4 Bobot Prioritas Kriteria (<em>w<sub>j</sub></em>) dan Indeks Konsistensi AHP pada 4 Profil Pengguna</div>
+    <table>
+        <thead>
+            <tr>
+                <th>Kode &amp; Kriteria</th>
+                <th>Profil Mahasiswa (<em>student</em>)</th>
+                <th>Profil Gamer (<em>gamer</em>)</th>
+                <th>Profil Kreator (<em>creator</em>)</th>
+                <th>Profil Kantoran (<em>office</em>)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>C1</strong> — Harga (Cost)</td>
+                <td style="text-align: right; font-weight: bold; background: #eef6ff;">0,3030 (30,30%)</td>
+                <td style="text-align: right;">0,0403 (4,03%)</td>
+                <td style="text-align: right;">0,0308 (3,08%)</td>
+                <td style="text-align: right;">0,1180 (11,80%)</td>
+            </tr>
+            <tr>
+                <td><strong>C2</strong> — Kapasitas RAM (Benefit)</td>
+                <td style="text-align: right;">0,0985 (9,85%)</td>
+                <td style="text-align: right;">0,1235 (12,35%)</td>
+                <td style="text-align: right;">0,1785 (17,85%)</td>
+                <td style="text-align: right;">0,0752 (7,52%)</td>
+            </tr>
+            <tr>
+                <td><strong>C3</strong> — Storage Efektif (Benefit)</td>
+                <td style="text-align: right;">0,0626 (6,26%)</td>
+                <td style="text-align: right;">0,0848 (8,48%)</td>
+                <td style="text-align: right;">0,1155 (11,55%)</td>
+                <td style="text-align: right;">0,0509 (5,09%)</td>
+            </tr>
+            <tr>
+                <td><strong>C4</strong> — Peringkat CPU (Cost)</td>
+                <td style="text-align: right;">0,0626 (6,26%)</td>
+                <td style="text-align: right;">0,1841 (18,41%)</td>
+                <td style="text-align: right; font-weight: bold; background: #eef6ff;">0,2716 (27,16%)</td>
+                <td style="text-align: right;">0,1180 (11,80%)</td>
+            </tr>
+            <tr>
+                <td><strong>C5</strong> — Skor GPU (Benefit)</td>
+                <td style="text-align: right;">0,0295 (2,95%)</td>
+                <td style="text-align: right; font-weight: bold; background: #eef6ff;">0,2761 (27,61%)</td>
+                <td style="text-align: right;">0,1785 (17,85%)</td>
+                <td style="text-align: right;">0,0251 (2,51%)</td>
+            </tr>
+            <tr>
+                <td><strong>C6</strong> — Baterai (Benefit)</td>
+                <td style="text-align: right;">0,1469 (14,69%)</td>
+                <td style="text-align: right;">0,0282 (2,82%)</td>
+                <td style="text-align: right;">0,0471 (4,71%)</td>
+                <td style="text-align: right; font-weight: bold; background: #eef6ff;">0,2810 (28,10%)</td>
+            </tr>
+            <tr>
+                <td><strong>C7</strong> — Bobot Fisik (Cost)</td>
+                <td style="text-align: right;">0,2130 (21,30%)</td>
+                <td style="text-align: right;">0,0205 (2,05%)</td>
+                <td style="text-align: right;">0,0308 (3,08%)</td>
+                <td style="text-align: right;">0,1887 (18,87%)</td>
+            </tr>
+            <tr>
+                <td><strong>C8</strong> — Rating Pengguna (Benefit)</td>
+                <td style="text-align: right;">0,0626 (6,26%)</td>
+                <td style="text-align: right;">0,0585 (5,85%)</td>
+                <td style="text-align: right;">0,0736 (7,36%)</td>
+                <td style="text-align: right;">0,1180 (11,80%)</td>
+            </tr>
+            <tr>
+                <td><strong>C9</strong> — Refresh Rate (Benefit)</td>
+                <td style="text-align: right;">0,0213 (2,13%)</td>
+                <td style="text-align: right;">0,1841 (18,41%)</td>
+                <td style="text-align: right;">0,0736 (7,36%)</td>
+                <td style="text-align: right;">0,0251 (2,51%)</td>
+            </tr>
+            <tr style="border-top: 2px solid #000;">
+                <td><strong>Total Bobot (&sum; <em>w<sub>j</sub></em>)</strong></td>
+                <td style="text-align: right; font-weight: bold;">1,0000</td>
+                <td style="text-align: right; font-weight: bold;">1,0000</td>
+                <td style="text-align: right; font-weight: bold;">1,0000</td>
+                <td style="text-align: right; font-weight: bold;">1,0000</td>
+            </tr>
+            <tr>
+                <td><strong>Nilai Eigen Maksimum (<em>&lambda;<sub>max</sub></em>)</strong></td>
+                <td style="text-align: right;">9,2848</td>
+                <td style="text-align: right;">9,3135</td>
+                <td style="text-align: right;">9,1772</td>
+                <td style="text-align: right;">9,2194</td>
+            </tr>
+            <tr>
+                <td><strong><em>Consistency Index</em> (CI)</strong></td>
+                <td style="text-align: right;">0,0356</td>
+                <td style="text-align: right;">0,0392</td>
+                <td style="text-align: right;">0,0221</td>
+                <td style="text-align: right;">0,0274</td>
+            </tr>
+            <tr>
+                <td><strong><em>Consistency Ratio</em> (CR = CI / 1,45)</strong></td>
+                <td style="text-align: right; font-weight: bold;">0,0245 (2,45%)</td>
+                <td style="text-align: right; font-weight: bold;">0,0270 (2,70%)</td>
+                <td style="text-align: right; font-weight: bold;">0,0153 (1,53%)</td>
+                <td style="text-align: right; font-weight: bold;">0,0189 (1,89%)</td>
+            </tr>
+            <tr>
+                <td><strong>Status Konsistensi (Syarat CR &le; 0,10)</strong></td>
+                <td style="text-align: center; font-weight: bold;">KONSISTEN</td>
+                <td style="text-align: center; font-weight: bold;">KONSISTEN</td>
+                <td style="text-align: center; font-weight: bold;">KONSISTEN</td>
+                <td style="text-align: center; font-weight: bold;">KONSISTEN</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p>
+        Sebagaimana terlihat pada Tabel 4.4, keempat profil memiliki nilai CR di antara <strong>1,53% hingga 2,70%</strong>, jauh di bawah ambang batas maksimum 10% (0,10). Distribusi bobot juga mencerminkan karakteristik tiap persona secara akurat: profil <em>Mahasiswa</em> memberikan bobot tertinggi pada Harga (30,30%), Bobot Fisik (21,30%), dan Baterai (14,69%); profil <em>Gamer</em> menitikberatkan Skor GPU (27,61%), Peringkat CPU (18,41%), dan Refresh Rate (18,41%); profil <em>Kreator</em> mengutamakan Peringkat CPU (27,16%), Skor GPU (17,85%), dan RAM (17,85%); sedangkan profil <em>Kantoran</em> mengutamakan Baterai (28,10%) dan Bobot Fisik (18,87%).
+    </p>
+
+    <h3 class="section-title">4.3 Hasil Perankingan Alternatif Laptop dengan Metode TOPSIS</h3>
+    <p>
+        Seluruh 949 alternatif laptop dinormalisasi menggunakan pembagi vektor Euclidean pada masing-masing kriteria sebagaimana dirinci pada Tabel 4.5, kemudian dikalikan dengan bobot AHP tiap profil untuk memperoleh jarak <em>D<sub>i</sub><sup>+</sup></em>, <em>D<sub>i</sub><sup>-</sup></em>, dan skor preferensi akhir <em>C<sub>i</sub></em>. Tabel 4.6 hingga Tabel 4.9 menampilkan 5 rekomendasi laptop terbaik untuk masing-masing profil pengguna.
+    </p>
+
+    <div class="caption">Tabel 4.5 Vektor Pembagi Normalisasi Euclidean (&radic;&sum;<em>x<sub>ij</sub></em><sup>2</sup>) pada 949 Alternatif Laptop</div>
+    <table>
+        <thead>
+            <tr>
+                <th>Kode</th>
+                <th>Kolom Kriteria</th>
+                <th>Sifat</th>
+                <th>Nilai Pembagi Vektor Euclidean (&radic;&sum;<em>x<sub>ij</sub></em><sup>2</sup>)</th>
+                <th>Nilai Terbaik di Katalog</th>
+                <th>Nilai Terburuk di Katalog</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="text-align: center;">C1</td>
+                <td><code>price_idr</code></td>
+                <td style="text-align: center;">Cost</td>
+                <td style="text-align: right;">463.166.494,1286</td>
+                <td style="text-align: right;">Rp 3.038.100</td>
+                <td style="text-align: right;">Rp 57.378.100</td>
+            </tr>
+            <tr>
+                <td style="text-align: center;">C2</td>
+                <td><code>ram_gb</code></td>
+                <td style="text-align: center;">Benefit</td>
+                <td style="text-align: right;">350,4283</td>
+                <td style="text-align: right;">32 GB</td>
+                <td style="text-align: right;">4 GB</td>
+            </tr>
+            <tr>
+                <td style="text-align: center;">C3</td>
+                <td><code>storage_effective_gb</code></td>
+                <td style="text-align: center;">Benefit</td>
+                <td style="text-align: right;">21.266,9495</td>
+                <td style="text-align: right;">2.000 GB</td>
+                <td style="text-align: right;">19,2 GB</td>
+            </tr>
+            <tr>
+                <td style="text-align: center;">C4</td>
+                <td><code>cpu_ranking</code></td>
+                <td style="text-align: center;">Cost</td>
+                <td style="text-align: right;">9.613,0173</td>
+                <td style="text-align: right;">Peringkat 4</td>
+                <td style="text-align: right;">Peringkat 907</td>
+            </tr>
+            <tr>
+                <td style="text-align: center;">C5</td>
+                <td><code>gpu_benchmark</code></td>
+                <td style="text-align: center;">Benefit</td>
+                <td style="text-align: right;">1.796,9124</td>
+                <td style="text-align: right;">233,00</td>
+                <td style="text-align: right;">1,00</td>
+            </tr>
+            <tr>
+                <td style="text-align: center;">C6</td>
+                <td><code>battery_hours</code></td>
+                <td style="text-align: center;">Benefit</td>
+                <td style="text-align: right;">136,3121</td>
+                <td style="text-align: right;">5,00 jam</td>
+                <td style="text-align: right;">4,00 jam</td>
+            </tr>
+            <tr>
+                <td style="text-align: center;">C7</td>
+                <td><code>weight_kg</code></td>
+                <td style="text-align: center;">Cost</td>
+                <td style="text-align: right;">53,0265</td>
+                <td style="text-align: right;">0,78 kg</td>
+                <td style="text-align: right;">2,90 kg</td>
+            </tr>
+            <tr>
+                <td style="text-align: center;">C8</td>
+                <td><code>user_rating</code></td>
+                <td style="text-align: center;">Benefit</td>
+                <td style="text-align: right;">130,9000</td>
+                <td style="text-align: right;">5,00</td>
+                <td style="text-align: right;">1,80</td>
+            </tr>
+            <tr>
+                <td style="text-align: center;">C9</td>
+                <td><code>refresh_rate_hz</code></td>
+                <td style="text-align: center;">Benefit</td>
+                <td style="text-align: right;">2.361,3049</td>
+                <td style="text-align: right;">360 Hz</td>
+                <td style="text-align: right;">60 Hz</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="caption">Tabel 4.6 Hasil Top-5 Rekomendasi Laptop untuk Profil Mahasiswa (<em>student</em>)</div>
+    <table>
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>ID</th>
+                <th>Merek &amp; Nama Model Laptop</th>
+                <th>Harga (Rp)</th>
+                <th>Spesifikasi Utama</th>
+                <th><em>D<sub>i</sub><sup>+</sup></em></th>
+                <th><em>D<sub>i</sub><sup>-</sup></em></th>
+                <th>Skor <em>C<sub>i</sub></em></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="text-align: center; font-weight: bold;">1</td>
+                <td style="text-align: center;">326</td>
+                <td><strong>HP 245 G8</strong> (Ryzen 5 Octa Core 3500U)</td>
+                <td style="text-align: right;">7.596.200</td>
+                <td>8 GB / 1 TB, 1,00 kg, 4,5 jam</td>
+                <td style="text-align: right;">0,009207</td>
+                <td style="text-align: right;">0,034026</td>
+                <td style="text-align: right; font-weight: bold;">0,787045</td>
+            </tr>
+            <tr>
+                <td style="text-align: center; font-weight: bold;">2</td>
+                <td style="text-align: center;">499</td>
+                <td><strong>Nokia PureBook S14</strong> (Core i5 11th Gen)</td>
+                <td style="text-align: right;">9.498.100</td>
+                <td>16 GB / 512 GB SSD, 1,40 kg, 4,5 jam</td>
+                <td style="text-align: right;">0,009181</td>
+                <td style="text-align: right;">0,032552</td>
+                <td style="text-align: right; font-weight: bold;">0,780011</td>
+            </tr>
+            <tr>
+                <td style="text-align: center; font-weight: bold;">3</td>
+                <td style="text-align: center;">15</td>
+                <td><strong>ASUS M515DA-BR322WS</strong> (Ryzen 3 Quad Core)</td>
+                <td style="text-align: right;">7.020.310</td>
+                <td>8 GB / 256 GB SSD, 1,00 kg, 4,5 jam</td>
+                <td style="text-align: right;">0,009807</td>
+                <td style="text-align: right;">0,034128</td>
+                <td style="text-align: right; font-weight: bold;">0,776777</td>
+            </tr>
+            <tr>
+                <td style="text-align: center; font-weight: bold;">4</td>
+                <td style="text-align: center;">157</td>
+                <td><strong>Infinix X1 Series XL12</strong> (Core i7 10th Gen - Green)</td>
+                <td style="text-align: right;">9.688.100</td>
+                <td>16 GB / 512 GB SSD, 1,48 kg, 4,5 jam</td>
+                <td style="text-align: right;">0,009365</td>
+                <td style="text-align: right;">0,032389</td>
+                <td style="text-align: right; font-weight: bold;">0,775715</td>
+            </tr>
+            <tr>
+                <td style="text-align: center; font-weight: bold;">5</td>
+                <td style="text-align: center;">160</td>
+                <td><strong>Infinix X1 Series XL12</strong> (Core i7 10th Gen - Red)</td>
+                <td style="text-align: right;">9.688.100</td>
+                <td>16 GB / 512 GB SSD, 1,48 kg, 4,5 jam</td>
+                <td style="text-align: right;">0,009365</td>
+                <td style="text-align: right;">0,032389</td>
+                <td style="text-align: right; font-weight: bold;">0,775715</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="caption">Tabel 4.7 Hasil Top-5 Rekomendasi Laptop untuk Profil Gamer &amp; Esports (<em>gamer</em>)</div>
+    <table>
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>ID</th>
+                <th>Merek &amp; Nama Model Laptop</th>
+                <th>Harga (Rp)</th>
+                <th>Spesifikasi Gaming Utama</th>
+                <th><em>D<sub>i</sub><sup>+</sup></em></th>
+                <th><em>D<sub>i</sub><sup>-</sup></em></th>
+                <th>Skor <em>C<sub>i</sub></em></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="text-align: center; font-weight: bold;">1</td>
+                <td style="text-align: center;">240</td>
+                <td><strong>Acer Predator Helios 300 PH315-54</strong> (Core i9 11th Gen)</td>
+                <td style="text-align: right;">32.298.100</td>
+                <td>32 GB / 1 TB SSD, RTX 3070 (154,0), <strong>300 Hz</strong></td>
+                <td style="text-align: right;">0,013881</td>
+                <td style="text-align: right;">0,035975</td>
+                <td style="text-align: right; font-weight: bold;">0,721575</td>
+            </tr>
+            <tr>
+                <td style="text-align: center; font-weight: bold;">2</td>
+                <td style="text-align: center;">136</td>
+                <td><strong>Acer Predator Helios 300 PH315-54</strong> (Core i9 11th Gen)</td>
+                <td style="text-align: right;">27.548.100</td>
+                <td>16 GB / 1 TB SSD, RTX 3060 (132,0), <strong>360 Hz</strong></td>
+                <td style="text-align: right;">0,017151</td>
+                <td style="text-align: right;">0,035583</td>
+                <td style="text-align: right; font-weight: bold;">0,674771</td>
+            </tr>
+            <tr>
+                <td style="text-align: center; font-weight: bold;">3</td>
+                <td style="text-align: center;">17</td>
+                <td><strong>MSI GP66 Leopard 11UG</strong> (Core i7 11th Gen)</td>
+                <td style="text-align: right;">30.071.300</td>
+                <td>16 GB / 1 TB SSD, RTX 3070 (154,0), <strong>240 Hz</strong></td>
+                <td style="text-align: right;">0,017031</td>
+                <td style="text-align: right;">0,032441</td>
+                <td style="text-align: right; font-weight: bold;">0,655742</td>
+            </tr>
+            <tr>
+                <td style="text-align: center; font-weight: bold;">4</td>
+                <td style="text-align: center;">643</td>
+                <td><strong>MSI GP76 Leopard 11UG</strong> (Core i7 11th Gen)</td>
+                <td style="text-align: right;">34.198.100</td>
+                <td>16 GB / 1 TB SSD, RTX 3070 (154,0), <strong>240 Hz</strong></td>
+                <td style="text-align: right;">0,017085</td>
+                <td style="text-align: right;">0,032415</td>
+                <td style="text-align: right; font-weight: bold;">0,654845</td>
+            </tr>
+            <tr>
+                <td style="text-align: center; font-weight: bold;">5</td>
+                <td style="text-align: center;">239</td>
+                <td><strong>Acer Predator Helios 300 PH315-54</strong> (Core i9 11th Gen)</td>
+                <td style="text-align: right;">26.598.100</td>
+                <td>16 GB / 1 TB SSD, RTX 3060 (132,0), <strong>300 Hz</strong></td>
+                <td style="text-align: right;">0,017788</td>
+                <td style="text-align: right;">0,032688</td>
+                <td style="text-align: right; font-weight: bold;">0,647590</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="caption">Tabel 4.8 Hasil Top-5 Rekomendasi Laptop untuk Profil Kreator Konten (<em>creator</em>)</div>
+    <table>
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>ID</th>
+                <th>Merek &amp; Nama Model Laptop</th>
+                <th>Harga (Rp)</th>
+                <th>Spesifikasi Kreator Utama</th>
+                <th><em>D<sub>i</sub><sup>+</sup></em></th>
+                <th><em>D<sub>i</sub><sup>-</sup></em></th>
+                <th>Skor <em>C<sub>i</sub></em></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="text-align: center; font-weight: bold;">1</td>
+                <td style="text-align: center;">240</td>
+                <td><strong>Acer Predator Helios 300</strong> (Core i9 11th Gen)</td>
+                <td style="text-align: right;">32.298.100</td>
+                <td>32 GB / 1 TB SSD, CPU Rank 45, GPU 154,0, 300 Hz</td>
+                <td style="text-align: right;">0,010034</td>
+                <td style="text-align: right;">0,033424</td>
+                <td style="text-align: right; font-weight: bold;">0,769117</td>
+            </tr>
+            <tr>
+                <td style="text-align: center; font-weight: bold;">2</td>
+                <td style="text-align: center;">155</td>
+                <td><strong>ASUS ROG Strix Scar 15 (2022)</strong> (Core i9 12th Gen)</td>
+                <td style="text-align: right;">57.378.100</td>
+                <td>32 GB / 1 TB SSD, CPU Rank 4, RTX 3080 Ti (233,0)</td>
+                <td style="text-align: right;">0,011444</td>
+                <td style="text-align: right;">0,037634</td>
+                <td style="text-align: right; font-weight: bold;">0,766816</td>
+            </tr>
+            <tr>
+                <td style="text-align: center; font-weight: bold;">3</td>
+                <td style="text-align: center;">161</td>
+                <td><strong>ASUS ROG Strix Scar 15 (2022)</strong> (Core i9 12th Gen)</td>
+                <td style="text-align: right;">50.348.100</td>
+                <td>32 GB / <strong>2 TB SSD</strong>, CPU Rank 4, RTX 3070 Ti (168,0)</td>
+                <td style="text-align: right;">0,011833</td>
+                <td style="text-align: right;">0,035326</td>
+                <td style="text-align: right; font-weight: bold;">0,749086</td>
+            </tr>
+            <tr>
+                <td style="text-align: center; font-weight: bold;">4</td>
+                <td style="text-align: center;">2</td>
+                <td><strong>ASUS ROG Strix Scar 15</strong> (Core i9 12th Gen)</td>
+                <td style="text-align: right;">43.698.100</td>
+                <td>32 GB / 1 TB SSD, CPU Rank 4, RTX 3070 Ti (168,0)</td>
+                <td style="text-align: right;">0,012920</td>
+                <td style="text-align: right;">0,034077</td>
+                <td style="text-align: right; font-weight: bold;">0,725089</td>
+            </tr>
+            <tr>
+                <td style="text-align: center; font-weight: bold;">5</td>
+                <td style="text-align: center;">1</td>
+                <td><strong>ASUS ROG Strix Scar 17</strong> (Core i9 12th Gen)</td>
+                <td style="text-align: right;">44.648.100</td>
+                <td>32 GB / 1 TB SSD, CPU Rank 4, RTX 3070 Ti (168,0)</td>
+                <td style="text-align: right;">0,012959</td>
+                <td style="text-align: right;">0,034087</td>
+                <td style="text-align: right; font-weight: bold;">0,724553</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="caption">Tabel 4.9 Hasil Top-5 Rekomendasi Laptop untuk Profil Pekerja Kantoran (<em>office</em>)</div>
+    <table>
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>ID</th>
+                <th>Merek &amp; Nama Model Laptop</th>
+                <th>Harga (Rp)</th>
+                <th>Spesifikasi Mobilitas Kantoran</th>
+                <th><em>D<sub>i</sub><sup>+</sup></em></th>
+                <th><em>D<sub>i</sub><sup>-</sup></em></th>
+                <th>Skor <em>C<sub>i</sub></em></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="text-align: center; font-weight: bold;">1</td>
+                <td style="text-align: center;">395</td>
+                <td><strong>HP Pavilion 13-be0208au</strong> (Ryzen 7 Octa Core 5800U)</td>
+                <td style="text-align: right;">15.160.100</td>
+                <td>16 GB / 1 TB SSD, <strong>0,97 kg</strong>, 4,5 jam, CPU Rank 64</td>
+                <td style="text-align: right;">0,006560</td>
+                <td style="text-align: right;">0,017038</td>
+                <td style="text-align: right; font-weight: bold;">0,722014</td>
+            </tr>
+            <tr>
+                <td style="text-align: center; font-weight: bold;">2</td>
+                <td style="text-align: center;">638</td>
+                <td><strong>HP Pavilion Aero 13-be0030au</strong> (Ryzen 5 Hexa Core 5600U)</td>
+                <td style="text-align: right;">12.252.910</td>
+                <td>16 GB / 512 GB SSD, <strong>0,97 kg</strong>, 4,5 jam, CPU Rank 87</td>
+                <td style="text-align: right;">0,006815</td>
+                <td style="text-align: right;">0,017231</td>
+                <td style="text-align: right; font-weight: bold;">0,716573</td>
+            </tr>
+            <tr>
+                <td style="text-align: center; font-weight: bold;">3</td>
+                <td style="text-align: center;">664</td>
+                <td><strong>HP Pavilion Aero 13-be0190au</strong> (Ryzen 5 Hexa Core 5600U)</td>
+                <td style="text-align: right;">12.521.000</td>
+                <td>16 GB / 512 GB SSD, <strong>0,97 kg</strong>, 4,5 jam, CPU Rank 87</td>
+                <td style="text-align: right;">0,006825</td>
+                <td style="text-align: right;">0,017210</td>
+                <td style="text-align: right; font-weight: bold;">0,716041</td>
+            </tr>
+            <tr>
+                <td style="text-align: center; font-weight: bold;">4</td>
+                <td style="text-align: center;">192</td>
+                <td><strong>Lenovo IdeaPad 5 Pro 14ACN6</strong> (Ryzen 7 Octa Core 5800U)</td>
+                <td style="text-align: right;">13.869.620</td>
+                <td>16 GB / 1 TB SSD, 1,38 kg, 4,5 jam, CPU Rank 64</td>
+                <td style="text-align: right;">0,006724</td>
+                <td style="text-align: right;">0,016721</td>
+                <td style="text-align: right; font-weight: bold;">0,713204</td>
+            </tr>
+            <tr>
+                <td style="text-align: center; font-weight: bold;">5</td>
+                <td style="text-align: center;">326</td>
+                <td><strong>HP 245 G8</strong> (Ryzen 5 Octa Core 3500U)</td>
+                <td style="text-align: right;">7.596.200</td>
+                <td>8 GB / 1 TB, 1,00 kg, 4,5 jam, CPU Rank 63</td>
+                <td style="text-align: right;">0,007456</td>
+                <td style="text-align: right;">0,017995</td>
+                <td style="text-align: right; font-weight: bold;">0,707038</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p>
+        <strong>Analisis Rasionalitas Keputusan:</strong> Hasil pada Tabel 4.6 hingga Tabel 4.9 membuktikan bahwa kombinasi AHP-TOPSIS mampu membedakan rekomendasi secara tajam sesuai konteks kebutuhan:
+    </p>
+    <ul>
+        <li>Pada <strong>Profil Mahasiswa</strong>, sistem merekomendasikan laptop berharga Rp 7,0 juta – Rp 9,6 juta dengan bobot sangat ringan (1,00–1,48 kg) dan RAM 8–16 GB (<em>HP 245 G8</em>, <em>Nokia PureBook S14</em>, dan <em>Infinix X1 Core i7</em>).</li>
+        <li>Pada <strong>Profil Gamer</strong>, berkat perbaikan data <em>Refresh Rate</em> pada Notebook 01, sistem menempatkan laptop gaming kelas atas berlayar 240 Hz, 300 Hz, dan 360 Hz dengan GPU NVIDIA RTX 3060/3070 di lima posisi teratas (<em>Acer Predator Helios 300</em> dan <em>MSI GP66/GP76 Leopard</em>).</li>
+        <li>Pada <strong>Profil Kreator</strong>, sistem mengangkat seri <em>ASUS ROG Strix Scar 15/17 (Core i9 Gen-12, CPU Rank 4, RAM 32 GB, SSD 1–2 TB, RTX 3070 Ti / 3080 Ti)</em> yang memiliki performa pemrosesan tertinggi di seluruh katalog.</li>
+        <li>Pada <strong>Profil Kantoran</strong>, sistem memilih seri <em>HP Pavilion Aero 13</em> (Ryzen 5/7 seri U, RAM 16 GB, SSD 512 GB–1 TB) yang memiliki bobot ultra-ringan <strong>0,97 kg</strong> dengan harga menengah Rp 12,2–15,1 juta.</li>
+    </ul>
+
+    <h3 class="section-title">4.4 Validasi Komparatif (TOPSIS vs SAW vs WP) dan Uji Sensitivitas Bobot</h3>
+    <p>
+        Melalui eksekusi <code>02_mcdm_prototype_validation.ipynb</code> pada Google Colab (yang menghasilkan berkas <code>mcdm_validation_summary.json</code>, <code>preset_profiles.json</code>, dan <code>topsis_fixture.json</code>), dilakukan pengujian validasi silang antara metode TOPSIS terhadap metode SAW dan WP menggunakan koefisien korelasi peringkat Spearman (<em>&rho;</em>) serta irisan anggota 10 besar (<em>Top-10 Overlap</em>). Hasil pengujian komparatif pada keempat profil disajikan pada Tabel 4.10.
+    </p>
+
+    <div class="caption">Tabel 4.10 Komparasi Korelasi Peringkat Spearman (<em>&rho;</em>) antara TOPSIS, SAW, dan WP pada 949 Laptop</div>
+    <table>
+        <thead>
+            <tr>
+                <th>Profil Pengguna</th>
+                <th>Spearman <em>&rho;</em> (TOPSIS vs SAW)</th>
+                <th>Spearman <em>&rho;</em> (TOPSIS vs WP)</th>
+                <th>Irisan Top-10 (TOPSIS &cap; SAW)</th>
+                <th>Irisan Top-10 (TOPSIS &cap; WP)</th>
+                <th>Interpretasi Konsistensi Lintas Metode</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Mahasiswa</strong> (<em>student</em>)</td>
+                <td style="text-align: right;">0,6778</td>
+                <td style="text-align: right;">0,6485</td>
+                <td style="text-align: center;">0 / 10</td>
+                <td style="text-align: center;">5 / 10</td>
+                <td>Korelasi kuat secara global; SAW berbeda di Top-10 karena rasio <em>min(x)/x</em> pada kriteria <em>cost</em> sangat sensitif terhadap nilai ekstrem.</td>
+            </tr>
+            <tr>
+                <td><strong>Gamer</strong> (<em>gamer</em>)</td>
+                <td style="text-align: right; font-weight: bold;">0,9676</td>
+                <td style="text-align: right; font-weight: bold;">0,9845</td>
+                <td style="text-align: center; font-weight: bold;">8 / 10</td>
+                <td style="text-align: center; font-weight: bold;">8 / 10</td>
+                <td>Korelasi sangat kuat (&gt; 0,96); 8 dari 10 laptop teratas identik di ketiga metode.</td>
+            </tr>
+            <tr>
+                <td><strong>Kreator</strong> (<em>creator</em>)</td>
+                <td style="text-align: right; font-weight: bold;">0,9224</td>
+                <td style="text-align: right; font-weight: bold;">0,9859</td>
+                <td style="text-align: center; font-weight: bold;">8 / 10</td>
+                <td style="text-align: center; font-weight: bold;">8 / 10</td>
+                <td>Korelasi sangat kuat (&gt; 0,92); 8 dari 10 laptop teratas identik di ketiga metode.</td>
+            </tr>
+            <tr>
+                <td><strong>Kantoran</strong> (<em>office</em>)</td>
+                <td style="text-align: right;">0,3611</td>
+                <td style="text-align: right; font-weight: bold;">0,7744</td>
+                <td style="text-align: center;">4 / 10</td>
+                <td style="text-align: center;">4 / 10</td>
+                <td>TOPSIS dan WP selaras kuat (<em>&rho;</em> = 0,7744), sedangkan SAW terdistorsi oleh pembagian <em>min/x</em> pada kriteria peringkat CPU (4 vs 907).</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p>
+        Temuan pada Tabel 4.10 memberikan justifikasi ilmiah yang kuat mengapa <strong>TOPSIS dipilih sebagai metode perankingan utama</strong> dibandingkan SAW: pada kriteria <em>cost</em> yang memiliki rentang rasio sangat lebar seperti <code>cpu_ranking</code> (nilai terbaik 4 vs nilai terburuk 907), normalisasi SAW (<em>r<sub>ij</sub> = min / x<sub>ij</sub></em>) menyebabkan alternatif berperingkat CPU 4 mendapat nilai 1,00 sedangkan peringkat 40 langsung jatuh menjadi 0,10 (penurunan hiperbolik 90%). Sebaliknya, normalisasi vektor Euclidean pada TOPSIS dan pemangkatan multiplikatif pada WP menjaga proporsi jarak antar-alternatif secara stabil (terbukti dari korelasi TOPSIS terhadap WP yang mencapai <strong>0,9845</strong> pada profil Gamer dan <strong>0,9859</strong> pada profil Kreator).
+    </p>
+
+    <p>
+        Selanjutnya, dilakukan <strong>Uji Sensitivitas Bobot</strong> dengan mengubah bobot kriteria prioritas tertinggi pada setiap profil sebesar &minus;20%, &minus;10%, +10%, dan +20% (kemudian menormalisasi ulang total bobot menjadi 1,0). Tabel 4.11 merangkum stabilitas peringkat ke-1 (<em>Top-1</em>) dan jumlah irisan anggota 5 besar (<em>Top-5 Overlap</em>).
+    </p>
+
+    <div class="caption">Tabel 4.11 Hasil Uji Sensitivitas Perubahan Bobot Kriteria Utama (&plusmn;10% dan &plusmn;20%)</div>
+    <table>
+        <thead>
+            <tr>
+                <th>Profil Pengguna</th>
+                <th>Kriteria yang Diuji</th>
+                <th>Perturbasi &minus;20% (Top-1 Tetap | Irisan Top-5)</th>
+                <th>Perturbasi &minus;10% (Top-1 Tetap | Irisan Top-5)</th>
+                <th>Perturbasi +10% (Top-1 Tetap | Irisan Top-5)</th>
+                <th>Perturbasi +20% (Top-1 Tetap | Irisan Top-5)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Mahasiswa</strong> (<em>student</em>)</td>
+                <td><strong>C1</strong> (Harga, <em>w</em> = 0,3030)</td>
+                <td style="text-align: center;">Ya (ID 326) | <strong>4/5</strong></td>
+                <td style="text-align: center;">Ya (ID 326) | <strong>4/5</strong></td>
+                <td style="text-align: center;">Ya (ID 326) | <strong>3/5</strong></td>
+                <td style="text-align: center;">Ya (ID 326) | <strong>3/5</strong></td>
+            </tr>
+            <tr>
+                <td><strong>Gamer</strong> (<em>gamer</em>)</td>
+                <td><strong>C5</strong> (GPU, <em>w</em> = 0,2761)</td>
+                <td style="text-align: center;">Ya (ID 240) | <strong>5/5</strong></td>
+                <td style="text-align: center;">Ya (ID 240) | <strong>5/5</strong></td>
+                <td style="text-align: center;">Ya (ID 240) | <strong>4/5</strong></td>
+                <td style="text-align: center;">Ya (ID 240) | <strong>4/5</strong></td>
+            </tr>
+            <tr>
+                <td><strong>Kreator</strong> (<em>creator</em>)</td>
+                <td><strong>C4</strong> (CPU, <em>w</em> = 0,2716)</td>
+                <td style="text-align: center;">Berubah ke ID 155 | <strong>5/5</strong></td>
+                <td style="text-align: center;">Ya (ID 240) | <strong>5/5</strong></td>
+                <td style="text-align: center;">Ya (ID 240) | <strong>5/5</strong></td>
+                <td style="text-align: center;">Ya (ID 240) | <strong>5/5</strong></td>
+            </tr>
+            <tr>
+                <td><strong>Kantoran</strong> (<em>office</em>)</td>
+                <td><strong>C6</strong> (Baterai, <em>w</em> = 0,2810)</td>
+                <td style="text-align: center;">Ya (ID 395) | <strong>5/5</strong></td>
+                <td style="text-align: center;">Ya (ID 395) | <strong>5/5</strong></td>
+                <td style="text-align: center;">Ya (ID 395) | <strong>5/5</strong></td>
+                <td style="text-align: center;">Ya (ID 395) | <strong>4/5</strong></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p>
+        Tabel 4.11 menunjukkan bahwa dari 16 skenario perturbasi bobot (4 profil &times; 4 tingkat perubahan), sebanyak <strong>15 dari 16 skenario (93,75%) mempertahankan pemenang peringkat 1 (<em>Top-1</em>) yang sama persis</strong>, serta mempertahankan 80%–100% komposisi anggota 5 besar. Satu-satunya pergeseran <em>Top-1</em> terjadi pada profil Kreator ketika bobot CPU diturunkan sebesar &minus;20%, di mana <em>ASUS ROG Strix Scar 15 RTX 3080 Ti</em> (ID 155, sebelumnya peringkat 2 dengan selisih skor hanya 0,0023) naik ke peringkat 1 menggeser <em>Acer Predator Helios 300</em> (ID 240), sementara kelima anggota Top-5 tetap identik (5/5). Hal ini membuktikan bahwa model keputusan AHP-TOPSIS yang dibangun memiliki ketahanan (<em>robustness</em>) yang sangat tinggi.
+    </p>
+
+    <h3 class="section-title">4.5 Implementasi Aplikasi Web Laravel, <em>Analysis Lab</em> Streamlit, dan Verifikasi Lintas-Engine</h3>
+    <p>
+        Sistem pendukung keputusan LapPick telah diimplementasikan secara penuh dengan memisahkan antarmuka operasional multi-halaman pada <strong>Laravel 13 (PHP 8.3.36 + SQLite + Tailwind CSS + Chart.js)</strong> dan modul analitik interaktif pada <strong>Streamlit 1.67 (Python 3.13 + NumPy + Pandas + Plotly)</strong>. Seluruh 949 baris data bersih dari <code>laptops_clean.csv</code> beserta 9 definisi kriteria (<code>C1–C9</code>) dan 4 profil prasetel (<code>preset_profiles.json</code>) dimuat ke dalam basis data relasional melalui <em>Database Seeder</em> otomatis. Antarmuka dirancang mengikuti <em>Design System</em> Dwibahasa (Indonesia / Inggris) dengan pengalih tema <em>Light Mode</em> (Opsi C — Modern SaaS) dan <em>Dark Mode</em> (Opsi B — Tech Spec Dark).
+    </p>
+    <p>
+        Untuk menjamin ketepatan komputasi matematis antara prototipe analitik Python dan aplikasi produksi PHP Laravel, dijalankan pengujian paritas otomatis melalui skrip <code>tools/verify_cross_engine.py</code> (yang mengeksekusi <code>AhpService.php</code> dan <code>TopsisService.php</code> secara langsung terhadap mesin NumPy pada seluruh 949 alternatif untuk keempat profil serta <em>contract fixture</em> 10 laptop). Hasil pengujian dan pengukuran waktu eksekusi dirangkum pada Tabel 4.12, sedangkan hasil pengujian fitur otomatis pada Laravel (<code>php artisan test</code>) mencapai status lulus 100% (5 skenario uji, 164 asersi).
+    </p>
+
+    <div class="caption">Tabel 4.12 Hasil Verifikasi Paritas Numerik Lintas-Engine (Python NumPy vs PHP 8.3 Laravel)</div>
+    <table>
+        <thead>
+            <tr>
+                <th>Skenario Uji</th>
+                <th>Jumlah Alternatif</th>
+                <th>Kesamaan Urutan Peringkat</th>
+                <th>Maks. Selisih Bobot |&Delta;<em>w<sub>j</sub></em>|</th>
+                <th>Maks. Selisih Skor |&Delta;<em>C<sub>i</sub></em>|</th>
+                <th>Waktu Komputasi (Py / PHP)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Contract Fixture</strong> (Acuan Colab 02)</td>
+                <td style="text-align: center;">10 laptop</td>
+                <td style="text-align: center;"><strong>10 / 10 Identik</strong></td>
+                <td style="text-align: right;">&lt; 1,0 &times; 10<sup>&minus;6</sup></td>
+                <td style="text-align: right;">3,907 &times; 10<sup>&minus;7</sup></td>
+                <td style="text-align: center;">&mdash;</td>
+            </tr>
+            <tr>
+                <td><strong>Profil Mahasiswa</strong> (<em>student</em>, Top-1 #326)</td>
+                <td style="text-align: center;">949 laptop</td>
+                <td style="text-align: center;"><strong>949 / 949 Identik</strong></td>
+                <td style="text-align: right;">2,78 &times; 10<sup>&minus;17</sup></td>
+                <td style="text-align: right;">1,78 &times; 10<sup>&minus;15</sup></td>
+                <td style="text-align: center;">43,1 ms / 5,5 ms</td>
+            </tr>
+            <tr>
+                <td><strong>Profil Gamer</strong> (<em>gamer</em>, Top-1 #240)</td>
+                <td style="text-align: center;">949 laptop</td>
+                <td style="text-align: center;"><strong>949 / 949 Identik</strong></td>
+                <td style="text-align: right;">1,39 &times; 10<sup>&minus;17</sup></td>
+                <td style="text-align: right;">5,83 &times; 10<sup>&minus;16</sup></td>
+                <td style="text-align: center;">34,3 ms / 5,5 ms</td>
+            </tr>
+            <tr>
+                <td><strong>Profil Kreator</strong> (<em>creator</em>, Top-1 #240)</td>
+                <td style="text-align: center;">949 laptop</td>
+                <td style="text-align: center;"><strong>949 / 949 Identik</strong></td>
+                <td style="text-align: right;">5,55 &times; 10<sup>&minus;17</sup></td>
+                <td style="text-align: right;">5,69 &times; 10<sup>&minus;16</sup></td>
+                <td style="text-align: center;">33,9 ms / 6,5 ms</td>
+            </tr>
+            <tr>
+                <td><strong>Profil Kantoran</strong> (<em>office</em>, Top-1 #395)</td>
+                <td style="text-align: center;">949 laptop</td>
+                <td style="text-align: center;"><strong>949 / 949 Identik</strong></td>
+                <td style="text-align: right;">0,00</td>
+                <td style="text-align: right;">2,05 &times; 10<sup>&minus;15</sup></td>
+                <td style="text-align: center;">38,6 ms / 7,6 ms</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p>
+        Dokumentasi visual implementasi antarmuka aplikasi web Laravel dan Analysis Lab Streamlit pada berbagai skenario penggunaan (<em>Light Mode</em>, <em>Dark Mode</em>, Wizard AHP-TOPSIS, Guardrail Konsistensi, Perbandingan Berdampingan, dan Eksplorasi Analitik) disajikan pada Gambar 4.1 hingga Gambar 4.7 berikut.
+    </p>
+
+    <div class="figure-block">
+        <img src="assets/screenshots/01_laravel_home_light.png" alt="Beranda LapPick Laravel Light Mode" style="border: 1px solid #cbd5e1;">
+        <div class="caption-figure">Gambar 4.1 Halaman Beranda Aplikasi Web Laravel (<em>Light Mode</em> — Opsi C Modern SaaS) beserta Pratinjau Pemenang Profil Prasetel</div>
+    </div>
+
+    <div class="figure-block">
+        <img src="assets/screenshots/02_laravel_home_dark.png" alt="Beranda LapPick Laravel Dark Mode" style="border: 1px solid #334155;">
+        <div class="caption-figure">Gambar 4.2 Halaman Beranda Aplikasi Web Laravel (<em>Dark Mode</em> — Opsi B Tech Spec Dark)</div>
+    </div>
+
+    <div class="figure-block">
+        <img src="assets/screenshots/03_laravel_wizard_light.png" alt="Wizard AHP TOPSIS Light Mode" style="border: 1px solid #cbd5e1;">
+        <div class="caption-figure">Gambar 4.3 Antarmuka <em>Wizard</em> Pembobotan AHP, Uji Konsistensi (CR = 0,0245), dan <em>Hard Filter</em> Pra-TOPSIS</div>
+    </div>
+
+    <div class="figure-block">
+        <img src="assets/screenshots/04_laravel_wizard_radar_dark.png" alt="Podium Top-3 TOPSIS dan Radar Chart" style="border: 1px solid #334155;">
+        <div class="caption-figure">Gambar 4.4 Podium Top-3 Rekomendasi, Grafik Radar 9 Dimensi, dan Tabel Peringkat TOPSIS (Profil Gamer)</div>
+    </div>
+
+    <div class="figure-block">
+        <img src="assets/screenshots/10_laravel_guardrail_dark.png" alt="Guardrail Konsistensi AHP CR > 0.10" style="border: 1px solid #334155;">
+        <div class="caption-figure">Gambar 4.5 Mekanisme <em>Guardrail</em> Matriks Tidak Konsisten (CR = 0,3116 &gt; 0,10) beserta Identifikasi 3 Pasangan Kriteria Paling Menyimpang</div>
+    </div>
+
+    <div class="figure-block">
+        <img src="assets/screenshots/06_laravel_compare_dark.png" alt="Perbandingan Berdampingan 3 Laptop" style="border: 1px solid #334155;">
+        <div class="caption-figure">Gambar 4.6 Fitur Perbandingan Berdampingan (<em>Side-by-Side Compare</em>) dengan Penanda Keunggulan Kriteria <em>Cost</em> vs <em>Benefit</em></div>
+    </div>
+
+    <div class="figure-block">
+        <img src="assets/screenshots/07_streamlit_analysis_lab.png" alt="Streamlit Analysis Lab" style="border: 1px solid #cbd5e1;">
+        <div class="caption-figure">Gambar 4.7 Laboratorium Analitik Streamlit (Eksplorasi Katalog, Simulator <em>What-If</em>, Uji Sensitivitas, dan Audit 10<sup>&minus;6</sup>)</div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- BAB 5: KESIMPULAN DAN SARAN                -->
+    <!-- ========================================== -->
+    <h2 class="chapter-title" style="page-break-before: always;">BAB 5<br>KESIMPULAN DAN SARAN</h2>
+
+    <h3 class="section-title">5.1 Kesimpulan</h3>
+    <p>
+        Berdasarkan hasil perancangan, pembersihan data, pemodelan matematis AHP-TOPSIS, dan eksperimen pada 949 alternatif laptop, dapat ditarik kesimpulan sebagai berikut:
+    </p>
+    <ol>
+        <li>Proses <em>data cleaning</em> dan <em>feature engineering</em> pada 984 data mentah Kaggle berhasil mengeliminasi 35 duplikat dan memperbaiki cacat pemotongan digit pada 151 baris kolom <em>Refresh Rate</em> melalui ekstraksi ekspresi reguler pada nama produk, sehingga menghasilkan <strong>949 alternatif laptop bersih</strong> yang valid untuk komputasi MCDM.</li>
+        <li>Metode <em>Analytical Hierarchy Process</em> (AHP) berhasil menurunkan bobot prioritas 9 kriteria pada keempat profil pengguna dengan rasio konsistensi yang sangat baik (CR Mahasiswa = 2,45%; CR Gamer = 2,70%; CR Kreator = 1,53%; CR Kantoran = 1,89%), seluruhnya memenuhi syarat mutlak <strong>CR &le; 10%</strong>.</li>
+        <li>Metode TOPSIS berhasil menghasilkan pemisahan rekomendasi yang sesuai dengan karakteristik setiap persona pengguna: <em>HP 245 G8</em> (<em>C<sub>i</sub></em> = 0,787045) untuk Mahasiswa, <em>Acer Predator Helios 300 Core i9 300Hz</em> (<em>C<sub>i</sub></em> = 0,721575) untuk Gamer, <em>Acer Predator Helios 300 / ASUS ROG Strix Scar 15 Core i9 Gen-12</em> (<em>C<sub>i</sub></em> = 0,769117 &amp; 0,766816) untuk Kreator, serta <em>HP Pavilion 13 Aero 0,97 kg</em> (<em>C<sub>i</sub></em> = 0,722014) untuk Pekerja Kantoran.</li>
+        <li>Implementasi sistem hibrida pada Laravel 13 (PHP 8.3.36) dan Streamlit Analysis Lab (Python 3.13) terbukti konsisten secara matematis dengan kesamaan urutan peringkat 949/949 laptop pada keempat profil (selisih skor preferensi maksimum &le; 2,05 &times; 10<sup>&minus;15</sup>) dan kecepatan komputasi nyata 5,5–7,6 milidetik di PHP.</li>
+    </ol>
+
+    <h3 class="section-title">5.2 Saran</h3>
+    <ol>
+        <li>Pengembangan selanjutnya dapat mengintegrasikan pembaruan harga pasar Indonesia secara berkala melalui <em>application programming interface</em> (API) katalog daring lokal agar konversi harga tidak hanya bergantung pada kurs statis.</li>
+        <li>Penambahan struktur sub-kriteria bertingkat pada AHP (misalnya mengelompokkan kriteria ke dalam dimensi Performa, Portabilitas, dan Ekonomi) dapat diterapkan apabila jumlah kriteria dikembangkan melebihi 9 atribut.</li>
+    </ol>
+
+    <!-- ========================================== -->
+    <!-- DAFTAR PUSTAKA                             -->
+    <!-- ========================================== -->
+    <h2 class="chapter-title" style="page-break-before: always; margin-top: 50px;">DAFTAR PUSTAKA</h2>
+
+    <p class="ref-item">
+        Bommavaram, D. (2022). <em>Laptop Ranked Specifications (2022): Laptop dataset with specifications, CPU and GPU rankings/benchmarks</em>. Kaggle Repository. https://www.kaggle.com/datasets/dhanushbommavaram/laptop-ranked-dataset
+    </p>
+    <p class="ref-item">
+        Hwang, C. L., &amp; Yoon, K. (1981). <em>Multiple Attribute Decision Making: Methods and Applications — A State-of-the-Art Survey</em>. Berlin: Springer-Verlag.
+    </p>
+    <p class="ref-item">
+        Kurniawan, A., Putra, R. D., &amp; Hidayat, T. (2023). Analisis Perbandingan Metode SAW dan TOPSIS pada Sistem Pendukung Keputusan Pemilihan Laptop. <em>Jurnal Teknologi Informasi dan Ilmu Komputer (JTIIK)</em>, 10(2), 311–320.
+    </p>
+    <p class="ref-item">
+        Pratama, B. A., &amp; Setiawan, H. (2022). Sistem Pendukung Keputusan Pemilihan Laptop Menggunakan Kombinasi Metode AHP dan TOPSIS Berbasis Web. <em>Jurnal Nasional Teknik Elektro dan Teknologi Informasi (JNTETI)</em>, 11(3), 198–206.
+    </p>
+    <p class="ref-item">
+        Saaty, T. L. (1980). <em>The Analytic Hierarchy Process: Planning, Priority Setting, Resource Allocation</em>. New York: McGraw-Hill.
+    </p>
+    <p class="ref-item">
+        Turban, E., Sharda, R., &amp; Delen, D. (2011). <em>Decision Support and Business Intelligence Systems</em> (9th ed.). Upper Saddle River, NJ: Pearson Prentice Hall.
+    </p>
+    <p class="ref-item">
+        Wijaya, R., &amp; Lestari, S. (2024). Penerapan Metode Analytical Hierarchy Process (AHP) dan Weighted Product (WP) dalam Rekomendasi Laptop Mahasiswa. <em>Jurnal Sistem Informasi (JSI)</em>, 16(1), 45–54.
+    </p>
+
+</div>
+
+</body>
+</html>
+
