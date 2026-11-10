@@ -54,6 +54,8 @@ lappick-laravel/storage/framework/views/*
 !lappick-laravel/storage/framework/views/.gitignore
 lappick-laravel/bootstrap/cache/*.php
 
-# Reference Course Documents (outside LapPick source repository)
+# Reference Course Documents & Personal Local Demo Helpers
 Makalah Kelompok SPK.docx
 Sistem Pendukung Keputusan.pdf
+start_lappick_demo.bat
+README_DEMO_UAS.md

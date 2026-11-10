@@ -4,9 +4,9 @@
 
 **LapPick** is a bilingual (**Indonesian / English**) Multi-Criteria Decision Making (**MCDM**) platform for recommending laptops matched to user priorities across **949 verified laptop specifications** and **9 standardized criteria (`C1`–`C9`)**.
 
-Built as a dual-architecture system combining:
-- **Laravel 13 (`PHP 8.3`) Operational Web App** (`lappick-laravel`): AHP Weighting Wizard (Preset Personas, Saaty 1–9 Sliders, Custom 9×9 Pairwise Matrix with real-time `CR ≤ 0.10` guardrail), Pre-TOPSIS Hard Filters, Top-3 Podium, Chart.js 9-Dimension Radar, Step-by-Step Mathematical Matrix Transparency (`X, R, Y, A+/A-, D+/D-, Ci`), Side-by-Side Compare (2–4 laptops), Decision History (CSV/PDF export), and Admin CRUD.
-- **Streamlit Analysis Lab (`Python 3.13`)** (`lab-streamlit`): Interactive EDA, Real-Time What-If Weight Simulator, Cross-Method Validation (**TOPSIS vs SAW vs WP** via Spearman $\rho$), Weight Sensitivity Stress-Tests ($\pm 10\%, \pm 20\%$), and Automated $10^{-6}$ Numerical Contract Audit.
+Built as a dual-architecture system combining two independently runnable services:
+- **Laravel 13 (`PHP 8.3`) Web Application** (`lappick-laravel`): AHP Weighting Wizard (4 Preset Personas, Saaty 1–9 Sliders, Custom 9×9 Pairwise Matrix with real-time `CR ≤ 0.10` guardrail), Pre-TOPSIS Hard Filters, Top-3 Podium, Chart.js 9-Dimension Radar, Step-by-Step Mathematical Matrix Transparency (`X, R, Y, A+/A-, D+/D-, Ci`), Side-by-Side Compare (2–4 laptops), Decision History (CSV/Print export), and Admin CRUD.
+- **Streamlit Analysis Lab (`Python 3.10+`)** (`lab-streamlit`): Interactive EDA, Real-Time What-If Weight Simulator, Cross-Method Validation (**TOPSIS vs SAW vs WP** via Spearman $\rho$), Weight Sensitivity Stress-Tests ($\pm 10\%, \pm 20\%$), and Automated $10^{-6}$ Numerical Contract Audit.
 - **Google Colab Reproducible Pipeline (`notebooks/`)**: Raw Kaggle dataset cleaning (`984 -> 949` unique laptops), forensic regex recovery of 151 truncated `refresh_rate_hz` rows, stratified median `user_rating` imputation with `is_imputed` tracking, and MCDM mathematical fixture generation.
 
 ---
@@ -19,7 +19,7 @@ Built as a dual-architecture system combining:
 | **Cross-Engine Parity (`Python NumPy` vs `PHP 8.3`)** | 4 × 949 full catalog rankings + `topsis_fixture.json` | **949/949 exact rank match** ($\max|\Delta C_i| \le 2.05 \times 10^{-15}$) |
 | **Ranking Runtime Latency (949 Laptops)** | `AhpService` + `TopsisService` | **5.4 – 14.0 ms (PHP)** / **33.7 – 54.6 ms (Python)** |
 | **Sensitivity Robustness (36 Scenarios)** | $\pm 10\%, \pm 20\%$ priority weight perturbation | **35 / 36 scenarios (97.2%)** preserve `#1` winner |
-| **Laravel Automated Test Suite** | `McdmContractTest` + `SpkWebRoutesTest` | **5 tests, 164 assertions PASS** (`0` IDE lint warnings) |
+| **Laravel Automated Test Suite** | `McdmContractTest` + `SpkWebRoutesTest` | **5 tests, 164 assertions PASS** |
 
 ---
 
@@ -53,35 +53,73 @@ Built as a dual-architecture system combining:
 
 ---
 
-## Quick Start
+## Quick Start (Local Installation)
 
-### Prerequisites
-- **PHP `>= 8.3`** (with `pdo_sqlite`, `mbstring`, `openssl`, `curl`, `fileinfo`, `zip`) & **Composer**
-- **Python `>= 3.10`** (`streamlit`, `plotly`, `pandas`, `numpy`, `scipy`)
+> **Note:** Both services use zero external database servers (Laravel uses **SQLite**, seeded automatically from `data/clean/laptops_clean.csv`). **Node.js / npm is NOT required** — Laravel UI styling (Tailwind CSS) and charts (Chart.js) load cleanly via CDN (keep browser internet access on for styling/charts).  
+> You can run **both** services together in 2 separate terminals (recommended, since the Laravel navbar links to the Analysis Lab on `:8501`), or run **either one standalone**.
 
-### 1. Setup Laravel Web App (`http://127.0.0.1:8000`)
+### Clone Repository
 ```bash
+git clone https://github.com/Eddienxl/LapPick.git
+cd LapPick
+```
+
+---
+
+### Terminal 1 — Laravel Web App (`http://127.0.0.1:8000`)
+
+**Prerequisites:** **PHP `>= 8.3`** and **Composer**.  
+Make sure these extensions are enabled in `php.ini` (`pdo_sqlite`, `sqlite3`, `mbstring`, `openssl`, `curl`, `fileinfo`, `zip` — already enabled out of the box in **Laragon**; if using vanilla PHP or XAMPP, uncomment them in `php.ini`).
+
+#### Windows (PowerShell)
+```powershell
 cd lappick-laravel
 composer install
-cp .env.example .env
+Copy-Item .env.example .env
+New-Item -ItemType File -Path database/database.sqlite -Force
 php artisan key:generate
-# Ensure SQLite file exists (Linux/macOS: touch database/database.sqlite)
 php artisan migrate --seed
 php artisan serve --host=127.0.0.1 --port=8000
 ```
 
-### 2. Setup Streamlit Analysis Lab (`http://localhost:8501`)
+#### Linux / macOS (Bash)
 ```bash
-pip install streamlit plotly pandas numpy scipy openpyxl
-cd lab-streamlit
-streamlit run app.py --server.port 8501
+cd lappick-laravel
+composer install
+cp .env.example .env
+touch database/database.sqlite
+php artisan key:generate
+php artisan migrate --seed
+php artisan serve --host=127.0.0.1 --port=8000
 ```
 
-> **Windows 1-Click Demo Launcher:** Double-click [`start_lappick_demo.bat`](start_lappick_demo.bat) from the repository root to auto-bootstrap `.env` / SQLite (on first launch) and start both servers together. See [`README_DEMO_UAS.md`](README_DEMO_UAS.md) for the `< 2 minute` walkthrough script.
+> `php artisan migrate --seed` automatically imports all **949 laptops**, **9 criteria (`C1–C9`)**, **4 AHP preset profiles**, and **2 demo accounts** directly from [`data/clean/`](data/clean/).  
+> If you get `could not find driver`, open `php.ini` and uncomment `extension=pdo_sqlite` and `extension=sqlite3`.
 
-### Demo Credentials (or use 1-Click buttons on `/login`)
+#### Demo Credentials (or use 1-Click buttons on `/login`)
 - **Admin:** `admin@lappick.id` / `password123`
 - **Student:** `fadli@uin-suska.ac.id` / `password123`
+
+---
+
+### Terminal 2 — Streamlit Analysis Lab (`http://localhost:8501`)
+
+**Prerequisites:** **Python `>= 3.10`** (`pip`).
+
+#### Windows (PowerShell)
+> Tip: On Windows, use `py` instead of `python` if the Microsoft Store stub intercepts `python`.
+```powershell
+cd lab-streamlit
+py -m pip install -r requirements.txt
+py -m streamlit run app.py --server.port 8501
+```
+
+#### Linux / macOS (Bash)
+```bash
+cd lab-streamlit
+pip install -r requirements.txt
+streamlit run app.py --server.port 8501
+```
 
 ---
 
@@ -93,11 +131,13 @@ cd lappick-laravel
 php artisan test
 
 # 2. Streamlit Python Engine Contract Audit
+cd ..
 python lab-streamlit/tests/test_engine_contract.py
 
 # 3. Cross-Engine Parity Verification (Python NumPy <-> PHP 8.3 across 949 laptops x 4 profiles)
 python tools/verify_cross_engine.py
 ```
+*(On Windows, replace `python` with `py`, and set `$env:PHP_BIN="C:\path\to\php.exe"` if `php` is not on your global `PATH`.)*
 
 ---
 
@@ -106,15 +146,13 @@ python tools/verify_cross_engine.py
 ```text
 LapPick/
 ├── lappick-laravel/              # Laravel 13 web app (AhpService, TopsisService, Blade UI, Seeders, Tests)
-├── lab-streamlit/                # Streamlit Analysis Lab (EDA, What-If, SAW/WP comparison, 1e-6 audit)
+├── lab-streamlit/                # Streamlit Analysis Lab (EDA, What-If, SAW/WP comparison, requirements.txt)
 ├── data/clean/                   # 949-laptop CSV, preset profiles, JSON fixtures & parity report
 ├── notebooks/                    # Google Colab notebooks 01 (Cleaning) & 02 (MCDM Validation)
 ├── tools/                        # Cross-engine parity verifier & optional 9Router MCP bridge
 ├── assets/screenshots/           # UI verification captures (Light/Dark, Desktop/Mobile)
-├── Master_Dokumentasi_SPK_Laptop/# Complete PRD, Design System, Architecture & Methodology docs
-├── Laporan_UAS_SPK_LapPick.html  # Complete academic UAS report (Bab 1–5 + Tabel 4.12 + Gambar 4.1–4.7)
-├── README_DEMO_UAS.md            # <2 minute live presentation guide & lecturer Q&A
-└── start_lappick_demo.bat        # Portable Windows launcher
+├── Master_Dokumentasi_SPK_Laptop/# PRD, Design System, Architecture & Methodology specs
+└── Laporan_UAS_SPK_LapPick.html  # Complete academic UAS report (Bab 1–5 + Tabel 4.12 + Gambar 4.1–4.7)
 ```
 
 ---

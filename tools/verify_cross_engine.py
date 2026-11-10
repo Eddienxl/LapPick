@@ -6,11 +6,12 @@ Tolerance contract: < 1e-6 (exact rank & tie-breaker parity required).
 """
 from __future__ import annotations
 import json
+import os
+import shutil
 import subprocess
 import sys
 import time
 from pathlib import Path
-import shutil
 import numpy as np
 import pandas as pd
 
@@ -19,10 +20,25 @@ sys.path.insert(0, str(ROOT / "lab-streamlit"))
 
 from engine import CRITERIA, compute_ahp, compute_topsis  # noqa: E402
 
-_WINGET_PHP = Path(
-    r"C:\Users\ahmdf\AppData\Local\Microsoft\WinGet\Packages\PHP.PHP.8.3_Microsoft.Winget.Source_8wekyb3d8bbwe\php.exe"
-)
-PHP_BIN = str(_WINGET_PHP) if _WINGET_PHP.exists() else (shutil.which("php") or "php")
+
+def resolve_php_binary() -> str:
+    """Resolve PHP CLI binary cross-platform (env override -> PATH -> standard Windows installs)."""
+    if env_php := os.environ.get("PHP_BIN"):
+        return env_php
+    if path_php := shutil.which("php"):
+        return path_php
+    win_candidates = [
+        *sorted((Path.home() / "AppData/Local/Microsoft/WinGet/Packages").glob("PHP.PHP.*/php.exe"), reverse=True),
+        *sorted(Path("C:/laragon/bin/php").glob("php-*/php.exe"), reverse=True),
+        Path("C:/xampp/php/php.exe"),
+    ]
+    for candidate in win_candidates:
+        if candidate.is_file():
+            return str(candidate)
+    return "php"
+
+
+PHP_BIN = resolve_php_binary()
 PHP_EVAL = ROOT / "tools" / "php_mcdm_eval.php"
 
 
